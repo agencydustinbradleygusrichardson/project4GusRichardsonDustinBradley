@@ -4,7 +4,21 @@ myApp.apiKey = 'AIzaSyBvRfnsn-GcuAyu3qJVv3zFg8DgPSgmsO8';
 myApp.apiUrl = 'https://translation.googleapis.com/language/translate/v2/';
 myApp.translateTarget = 'hu'; //hungarian
 myApp.translateSource = 'en'; //english
+// myApp.randomQuestion = function () {
+//     return Math.floor(Math.random() * 4) + 1;
+// }
 // q is string
+
+myApp.counter = 1; //inital counter state
+
+myApp.updateCounter = () => {
+    myApp.counter = myApp.counter + 1;
+}
+
+myApp.nextRound = $('.next-round').on('click', function () {
+    myApp.updateCounter();
+    console.log(myApp.counter);
+})
 
 myApp.returnQueryData = (translateQuery) => {
     $.ajax({
@@ -17,7 +31,7 @@ myApp.returnQueryData = (translateQuery) => {
             dataType: 'JSON',
             q: translateQuery,
         }
-    }).then(function (data) { 
+    }).then(function (data) {
         $('.appendHere').append(`${data.data.translations[0].translatedText}`);
     })
 }
@@ -32,13 +46,13 @@ myApp.sendQueryData = () => {
             source: myApp.translateSource,
             target: myApp.translateTarget,
             dataType: 'JSON',
-            q: myApp.info.questions.quote3.quoteText,
+            q: `myApp.info.questions.quote1.quoteText`,
         }
     }).then(function (data) {
         const translatedText = data.data.translations[0].translatedText;
         myApp.returnQueryData(translatedText);
     })
-    
+
 }
 
 
@@ -60,14 +74,14 @@ myApp.info = {
             author: 'Rosa Parks',
             quoteText: 'I have learned over the years that when one\'s mind is made up, this diminishes fear; knowing what must be done does away with fear.',
             imgUrl: './assets/rosaParks.jpg',
-               
+
         },
         quote4: {
             author: 'Maya Angelou',
             quoteText: 'We delight in the beauty of the butterfly, but rarely admit the changes it has gone through to achieve that beauty.',
             imgUrl: './assets/mayaAngelou.jpg',
         }
-        
+
     },
     dummyAnswers: {
         answer1: {
@@ -82,10 +96,12 @@ myApp.info = {
 
 
 myApp.init = () => {
+    // myApp.randomQuestion();
     myApp.sendQueryData();
-    
+
+
 }
 
-$(function () { 
+$(function () {
     myApp.init();
 })
