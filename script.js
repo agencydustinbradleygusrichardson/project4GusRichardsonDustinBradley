@@ -5,14 +5,12 @@ myApp.apiUrl = 'https://translation.googleapis.com/language/translate/v2/';
 myApp.translateTarget = 'hu'; //hungarian
 myApp.translateSource = 'en'; //english
 // q is string
-myApp.counter = 2;
-
-myApp.thing = 'quote3'
+myApp.counter = 1;
 
 // myApp.updateCounter = counter++;
 
 myApp.sendQueryData = () => {
-    console.log(myApp.info.questions.`quote${[myApp.counter]}`.quoteText)
+    console.log(myApp.info.questions[`quote${[myApp.counter]}`].quoteText)
     $.ajax({
         url: myApp.apiUrl,
         method: 'GET',
