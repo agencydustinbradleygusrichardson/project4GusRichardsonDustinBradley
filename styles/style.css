@@ -48,13 +48,14 @@ main {
     flex-direction: column;
     justify-content: space-between;
     align-items: right;
+    flex-wrap:wrap;
     
 }
 
 .imgContainer {
     height: 24%;
     width: auto;
-    background: url("https://www.stevensegallery.com/460/300");
+    /* background: url("https://www.stevensegallery.com/460/300"); */
     background-size: contain;
     background-repeat: no-repeat;
 }
