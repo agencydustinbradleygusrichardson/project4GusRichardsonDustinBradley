@@ -5,6 +5,31 @@ myApp.apiUrl = 'https://translation.googleapis.com/language/translate/v2/';
 myApp.translateTarget = 'hu'; //hungarian
 myApp.translateSource = 'en'; //english
 // q is string
+myApp.counter = 2;
+
+myApp.thing = 'quote3'
+
+// myApp.updateCounter = counter++;
+
+myApp.sendQueryData = () => {
+    console.log(myApp.info.questions.`quote${[myApp.counter]}`.quoteText)
+    $.ajax({
+        url: myApp.apiUrl,
+        method: 'GET',
+        data: {
+            key: myApp.apiKey,
+            source: myApp.translateSource,
+            target: myApp.translateTarget,
+            dataType: 'JSON',
+            //NEED TO UPDATE QUOTE NUMBER WITH COUNTER FUNCTION
+            q: myApp.info.questions.quote.quoteText,
+        }
+    }).then(function (data) {
+        const translatedText = data.data.translations[0].translatedText;
+        myApp.returnQueryData(translatedText);
+    })
+    
+}
 
 myApp.returnQueryData = (translateQuery) => {
     $.ajax({
@@ -17,34 +42,14 @@ myApp.returnQueryData = (translateQuery) => {
             dataType: 'JSON',
             q: translateQuery,
         }
-    }).then(function (data) { 
+    }).then(function (data) {
         $('.appendHere').append(`${data.data.translations[0].translatedText}`);
     })
 }
 
 
-myApp.sendQueryData = () => {
-    $.ajax({
-        url: myApp.apiUrl,
-        method: 'GET',
-        data: {
-            key: myApp.apiKey,
-            source: myApp.translateSource,
-            target: myApp.translateTarget,
-            dataType: 'JSON',
-            q: myApp.info.questions.quote3.quoteText,
-        }
-    }).then(function (data) {
-        const translatedText = data.data.translations[0].translatedText;
-        myApp.returnQueryData(translatedText);
-    })
-    
-}
-
-
-
 myApp.info = {
-    questions: {
+    questions : {
         quote1: {
             author: 'Marshall Mcluhan',
             quoteText: 'The medium is the message',
@@ -56,13 +61,13 @@ myApp.info = {
             imgUrl: './assets/martinLutherKingJr.jpg',
 
         },
-        quote3: {
+        quote: {
             author: 'Rosa Parks',
             quoteText: 'I have learned over the years that when one\'s mind is made up, this diminishes fear; knowing what must be done does away with fear.',
             imgUrl: './assets/rosaParks.jpg',
                
         },
-        quote4: {
+        quote: {
             author: 'Maya Angelou',
             quoteText: 'We delight in the beauty of the butterfly, but rarely admit the changes it has gone through to achieve that beauty.',
             imgUrl: './assets/mayaAngelou.jpg',
