@@ -30,6 +30,7 @@ body{
 
 }
 
+<<<<<<< HEAD
 h1 {
     font-family: 'ZCOOL QingKe HuangYou', cursive;
     font-size: 80px;
@@ -44,6 +45,8 @@ h1 {
 
 p {
     font-family: 'Open Sans', sans-serif;
+=======
+>>>>>>> origin
 }
 
 header {
@@ -53,7 +56,11 @@ header {
     border: 8px ridge rgb(250, 86, 149);
     /* border: 8px ridge rgb(250, 86, 149); */
     display: flex;
+<<<<<<< HEAD
     background: rgb(89, 204, 242)
+=======
+   
+>>>>>>> origin
 }
 
 
@@ -66,7 +73,10 @@ header div {
 
 .titleContainer {
     width: 60%;
+<<<<<<< HEAD
    
+=======
+>>>>>>> origin
 }
 
 .timerContainer {
