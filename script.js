@@ -75,7 +75,7 @@ myApp.returnQueryData = (translateQuery) => {
     })
 }
 
-// write function that randomizes dummy images
+
 
 // function to append dummy images to DOM
 
@@ -99,7 +99,15 @@ myApp.appendAnswers = () => {
     $('#container4').append(`<div class='answer4' role='button'  tabindex='0'><img src="./assets/rosaParks.jpg" alt=""></div>`)
 }
 
+// myApp.answerSelect = () => {
+//     $('.imgContainer').on('click', function () {
+//        if( === myApp.info.questions[`quote${[myApp.counter]}`.imgUrl]);
+//     })
+// }
 
+console.log($(this).find('img').attr('src'));
+
+myApp.answerSelect();   
 
 // APP INFO
 myApp.info = {
@@ -187,14 +195,25 @@ myApp.answerSelect = () => {
 
 myApp.init = () => {
     myApp.sendQueryData();
+<<<<<<< HEAD
+    // myApp.getPossibleAnswer();
+  
+    
+=======
     myApp.ticker();
 
+>>>>>>> 37809f173d471c454620e9e63cbe9f25dfe6ba1d
 }
 
 $(function () {
     myApp.init();
+<<<<<<< HEAD
+    
+ 
+=======
     myApp.answerSelect();
     // myApp.ticker();
+>>>>>>> 37809f173d471c454620e9e63cbe9f25dfe6ba1d
 
 
 })
