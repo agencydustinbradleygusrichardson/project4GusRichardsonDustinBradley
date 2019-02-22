@@ -20,6 +20,10 @@ myApp.addToCounter = () => {
 
 // SENDING SEARCH QUERY FOR THE FIRST TIME - CALLED IN FUNCTION INIT
 myApp.sendQueryData = () => {
+<<<<<<< HEAD
+    // console.log(myApp.info.questions[`quote${[myApp.counter]}`].quoteText)
+=======
+>>>>>>> 377c5fb5d8bd4ce89c17f44b81fbdc8ad0dd55dd
     $.ajax({
         url: myApp.apiUrl,
         method: 'GET',
@@ -29,12 +33,20 @@ myApp.sendQueryData = () => {
             target: myApp.translateTarget,
             dataType: 'JSON',
             //NEED TO UPDATE QUOTE NUMBER WITH COUNTER FUNCTION
+<<<<<<< HEAD
+            q: myApp.info.questions[`quote${[myApp.counter]}`].quoteText,
+=======
             q:myApp.info.questions[`quote${[myApp.counter]}`].quoteText,
+>>>>>>> 377c5fb5d8bd4ce89c17f44b81fbdc8ad0dd55dd
         }
     }).then(function (data) {
         const translatedText = data.data.translations[0].translatedText;
         myApp.returnQueryData(translatedText);
+<<<<<<< HEAD
+    })
+=======
     })   
+>>>>>>> 377c5fb5d8bd4ce89c17f44b81fbdc8ad0dd55dd
 }
 
 // RETURN BACK THE TRANSLATED QUERY - CALLED IN SEND QUERY FUNCTION. PASSES IN THE ORIGINALLY TRANSLATED DATA AND RETURNS IT BACK IN ENGLISH.
@@ -56,6 +68,14 @@ myApp.returnQueryData = (translateQuery) => {
         myApp.appendAnswers();
     })
 }
+
+// write function that randomizes dummy images
+
+// function to append dummy images to DOM
+
+//function to append the question to the DOM
+
+//function to update score and trigger next round
 
 
 // APPENDS QUESTION TO SCREEN DYNAMICALLY - PASSED IN TRANSLATED TEXT. CALLED IN THEN FUNCTION OF RETURNQUERYDATA. AKA ONCE WE HAVE THE DATA THROW THE QUESTION UP
@@ -85,7 +105,7 @@ myApp.checkUserResponse = () => {
 
 // APP INFO
 myApp.info = {
-    questions : {
+    questions: {
         quote1: {
             author: 'Marshall Mcluhan',
             quoteText: 'The medium is the message',
@@ -101,14 +121,14 @@ myApp.info = {
             author: 'Rosa Parks',
             quoteText: 'I have learned over the years that when one\'s mind is made up, this diminishes fear; knowing what must be done does away with fear.',
             imgUrl: './assets/rosaParks.jpg',
-               
+
         },
         quote4: {
             author: 'Maya Angelou',
             quoteText: 'We delight in the beauty of the butterfly, but rarely admit the changes it has gone through to achieve that beauty.',
             imgUrl: './assets/mayaAngelou.jpg',
         }
-        
+
     },
     dummyAnswers: {
         answer1: {
@@ -124,11 +144,14 @@ myApp.info = {
 myApp.init = () => {
     myApp.sendQueryData();
 
+<<<<<<< HEAD
   
     
+=======
+>>>>>>> ceee75355180ba55fa20ff5cbc93b33ee00f031d
 }
 
-$(function () { 
+$(function () {
     myApp.init();
 })
 
