@@ -4,7 +4,6 @@ article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary
 
 * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
-<<<<<<< HEAD
 /* rgba(1, 180, 239,1) darkest blue */
 /* rgba(31, 189, 241,1) mid blue */
 /* rgba(89, 204, 242,1) powder blue */
@@ -31,41 +30,16 @@ body{
    background-color: #01b4ef;
    /* background-image: url("data:image/svg+xml,%3Csvg width='40' height='12' viewBox='0 0 40 12' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 6.172L6.172 0h5.656L0 11.828V6.172zm40 5.656L28.172 0h5.656L40 6.172v5.656zM6.172 12l12-12h3.656l12 12h-5.656L20 3.828 11.828 12H6.172zm12 0L20 10.172 21.828 12h-3.656z' fill='%2359ccf2' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E"); */
 
-=======
-h1 {
-    font-family: 'ZCOOL QingKe HuangYou', cursive;
-    font-size: 80px;
-    color: rgb(255, 217, 0);
-    text-shadow: 3px 3px  rgb(250, 86, 149);
-    /* color: rgb(250, 86, 149); */
-    /* color: rgb(251, 152, 190); */
-    /* color: rgb(250, 24, 111); */
-}
-
-
-
-p {
-    font-family: 'Open Sans', sans-serif;
->>>>>>> ceee75355180ba55fa20ff5cbc93b33ee00f031d
 }
 
 header {
-<<<<<<< HEAD
     width: 100%;
     max-width: 100%;
     height: 25vh;
     border: 8px ridge rgb(250, 86, 149);
     /* border: 8px ridge rgb(250, 86, 149); */
-=======
-    width: 100vw;
-    height: 25vh;
->>>>>>> testBranch
     display: flex;
-<<<<<<< HEAD
    
-=======
-    background: rgb(89, 204, 242)
->>>>>>> ceee75355180ba55fa20ff5cbc93b33ee00f031d
 }
 
 header div {
@@ -77,10 +51,6 @@ header div {
 
 .titleContainer {
     width: 60%;
-<<<<<<< HEAD
-=======
-    /* border: 2px solid purple; */
->>>>>>> testBranch
 }
 
 .timerContainer {

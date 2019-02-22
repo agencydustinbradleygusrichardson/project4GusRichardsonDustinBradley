@@ -101,12 +101,12 @@ myApp.appendAnswers = () => {
 
 myApp.checkUserResponse = () => {
     $('.imgContainer').on('click', function () {
-          
-          if (($(this).find("p")[0].innerHTML) === myApp.info.questions[`quote${[myApp.counter]}`].author) {
-              console.log('Yaaas')
-          }
 
-      })
+        if (($(this).find("p")[0].innerHTML) === myApp.info.questions[`quote${[myApp.counter]}`].author) {
+            console.log('Yaaas')
+        }
+
+    })
 }
 
 // APP INFO
@@ -151,11 +151,8 @@ myApp.init = () => {
     myApp.sendQueryData();
     myApp.ticker();
 
-<<<<<<< HEAD
-  
-    
-=======
->>>>>>> ceee75355180ba55fa20ff5cbc93b33ee00f031d
+
+
 }
 
 $(function () {
