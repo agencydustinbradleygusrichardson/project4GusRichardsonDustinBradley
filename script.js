@@ -93,34 +93,10 @@ myApp.appendQuestion = (newText) => {
 // APPENDS POSSIBLE ANSWERS TO SCREEN DYNAMICALLY - CALLED IN THEN FUNCTION OF RETURNQUERYDATA. AKA ONCE WE HAVE THE DATA THROW THE QUESTION UP
 myApp.appendAnswers = () => {
     //USE TEMPLATE LITERALS IN ORDER TO GET A RANDOM URL()
-<<<<<<< HEAD
-    $('#container1').append(`<div class='answer1' role='button' tabindex='0'> <img src="./assets/martinLutherKingJr.jpg" alt=""><h4>${myApp.info.dummyAnswers.answer1.author}</h4></div>`)
-    $('#container2').append(`<div class='answer2' role='button'  tabindex='0'><img src="./assets/celineDion.jpg" alt=""><h4>${myApp.info.dummyAnswers.answer1.author}</h4></div>`)
-    $('#container3').append(`<div class='answer3' role='button'  tabindex='0'> <img src="./assets/marshallMcluhan.jpg" alt=""><h4>${myApp.info.dummyAnswers.answer1.author}</div>`)
-    $('#container4').append(`<div class='answer4' role='button'  tabindex='0'><img src="./assets/rosaParks.jpg" alt=""><h4>${myApp.info.dummyAnswers.answer1.author}</h4></div>`)
-}
-
-myApp.checkUserResponse = () => {
-    $('.imgContainer').on('click', function () {
-
-        if (($(this).find("p")[0].innerHTML) === myApp.info.questions[`quote${[myApp.counter]}`].author) {
-            console.log('Yaaas')
-        }
-
-    })
-}
-
-myApp.answerSelect = () => {
-    $('.imgContainer').on('click', function () {
-        console.log(($(this).find('img[src="./assets/marshallMcluhan.jpg"')));
-
-    })
-=======
     $('#container1').append(`<div class='answer1' role='button' tabindex='0'> <img src="./assets/martinLutherKingJr.jpg" alt=""></div>`)
     $('#container2').append(`<div class='answer2' role='button'  tabindex='0'><img src="./assets/celineDion.jpg" alt=""></div>`)
     $('#container3').append(`<div class='answer3' role='button'  tabindex='0'> <img src="./assets/marshallMcluhan.jpg" alt=""></div>`)
     $('#container4').append(`<div class='answer4' role='button'  tabindex='0'><img src="./assets/rosaParks.jpg" alt=""></div>`)
->>>>>>> 0e77caed270a8a6483b15ca6c592bd5f57f5f434
 }
 
 
@@ -170,33 +146,42 @@ myApp.info = {
         './assets/ghandi.jpg',
         './assets/johnLennon.jpg',
         './assets/winstonChurchill.jpg',
-        './assets/peterMnasbridge.jpg'       
+        './assets/peterMnasbridge.jpg'
     ]
 }
 
 
+myApp.answerSelect = () => {
+    $('.imgContainer').on('click', () => {
+
+        console.log($(this).find('img').attr('src'));
+        // if ($(this).find('img').attr('src') === myApp.info.questions[`quote${[myApp.counter]}`].imgUrl) {
+        //     console.log('true');
+        // } else {
+        //     console.log('false');
+
+        //     console.log(myApp.info.questions[`quote${[myApp.counter]}`].imgUrl);
+        // }
+
+
+    });
+};
+
+
+
+// console.log($('.imgContainer').children('img'));
+myApp.answerSelect();
+
 myApp.init = () => {
     myApp.sendQueryData();
-<<<<<<< HEAD
     myApp.ticker();
 
-
-
-=======
-    myApp.getPossibleAnswer();
-  
-    
->>>>>>> 0e77caed270a8a6483b15ca6c592bd5f57f5f434
 }
 
 $(function () {
     myApp.init();
-<<<<<<< HEAD
     myApp.answerSelect();
     // myApp.ticker();
-=======
-    
->>>>>>> 0e77caed270a8a6483b15ca6c592bd5f57f5f434
 
 
 })
