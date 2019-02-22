@@ -93,20 +93,10 @@ myApp.appendQuestion = (newText) => {
 // APPENDS POSSIBLE ANSWERS TO SCREEN DYNAMICALLY - CALLED IN THEN FUNCTION OF RETURNQUERYDATA. AKA ONCE WE HAVE THE DATA THROW THE QUESTION UP
 myApp.appendAnswers = () => {
     //USE TEMPLATE LITERALS IN ORDER TO GET A RANDOM URL()
-    $('#container1').append(`<div class='answer1' role='button' tabindex='0'> <img src="./assets/martinLutherKingJr.jpg" alt=""><h4>${myApp.info.dummyAnswers.answer1.author}</h4></div>`)
-    $('#container2').append(`<div class='answer2' role='button'  tabindex='0'><img src="./assets/celineDion.jpg" alt=""><h4>${myApp.info.dummyAnswers.answer1.author}</h4></div>`)
-    $('#container3').append(`<div class='answer3' role='button'  tabindex='0'> <img src="./assets/marshallMcluhan.jpg" alt=""><h4>${myApp.info.dummyAnswers.answer1.author}</div>`)
-    $('#container4').append(`<div class='answer4' role='button'  tabindex='0'><img src="./assets/rosaParks.jpg" alt=""><h4>${myApp.info.dummyAnswers.answer1.author}</h4></div>`)
-}
-
-myApp.checkUserResponse = () => {
-    $('.imgContainer').on('click', function () {
-          
-          if (($(this).find("p")[0].innerHTML) === myApp.info.questions[`quote${[myApp.counter]}`].author) {
-              console.log('Yaaas')
-          }
-
-      })
+    $('#container1').append(`<div class='answer1' role='button' tabindex='0'> <img src="./assets/martinLutherKingJr.jpg" alt=""></div>`)
+    $('#container2').append(`<div class='answer2' role='button'  tabindex='0'><img src="./assets/celineDion.jpg" alt=""></div>`)
+    $('#container3').append(`<div class='answer3' role='button'  tabindex='0'> <img src="./assets/marshallMcluhan.jpg" alt=""></div>`)
+    $('#container4').append(`<div class='answer4' role='button'  tabindex='0'><img src="./assets/rosaParks.jpg" alt=""></div>`)
 }
 
 // APP INFO
@@ -133,31 +123,42 @@ myApp.info = {
             author: 'Maya Angelou',
             quoteText: 'We delight in the beauty of the butterfly, but rarely admit the changes it has gone through to achieve that beauty.',
             imgUrl: './assets/mayaAngelou.jpg',
+            dummyAnswers: [
+
+            ]
         }
 
     },
-    dummyAnswers: {
-        answer1: {
-            author: 'Celine Dion',
-            imgUrl: './assets/celineDion.jpg',
-        },
-        answer2: {
-            author: 'George W. Bush'
-        }
-    }
+    dummyAnswers: [
+        './assets/celineDion.jpg',
+        './assets/georgeWBush.jpeg',
+        './assets/abeLincoln.jpg',
+        './assets/albertEinstein.jpg',
+        './assets/davidSuzuki.jpg',
+        './assets/franzKafka.jpg',
+        './assets/bruceLee.jpg',
+        './assets/anneFrank.jpg',
+        './assets/hunterSThompson.jpg',
+        './assets/salvadorDali.jpg',
+        './assets/steveJobs.png',
+        './assets/ghandi.jpg',
+        './assets/johnLennon.jpg',
+        './assets/winstonChurchill.jpg',
+        './assets/peterMnasbridge.jpg'       
+    ]
 }
+
 
 myApp.init = () => {
     myApp.sendQueryData();
-    myApp.ticker();
-
+    myApp.getPossibleAnswer();
   
     
 }
 
 $(function () {
     myApp.init();
-    // myApp.ticker();
+    
 
 
 })
@@ -166,7 +167,16 @@ $(function () {
         // STUART POSSIBLE ANSWER NOTES> PUT ANSWERS IN NEW ARRAY AND APPEND. ADD A RANDOM NUMBER FUNCTION TO THE FOR EACH SO THAT IT IS CALLED EVERY TIME. THIS WILL GIVE US A RANDOM NUMBER TO PUSH IN FOR EACH ANSWER.
 
 
+        //FOR EACH ITEM GET A RANDOM NUMBER
+
+
+
+
+// }
+
+
         // myApp.info.dummyAnswers.map((item) => item.forEach((item2) => {
+        // myApp.ranNum();
         //     myApp.currentAnswers.push(item2);
         //     console.log(myApp.currentAnswers);
         // })
