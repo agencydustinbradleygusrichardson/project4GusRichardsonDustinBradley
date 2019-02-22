@@ -75,7 +75,7 @@ myApp.returnQueryData = (translateQuery) => {
     })
 }
 
-// write function that randomizes dummy images
+
 
 // function to append dummy images to DOM
 
@@ -98,6 +98,16 @@ myApp.appendAnswers = () => {
     $('#container3').append(`<div class='answer3' role='button'  tabindex='0'> <img src="./assets/marshallMcluhan.jpg" alt=""></div>`)
     $('#container4').append(`<div class='answer4' role='button'  tabindex='0'><img src="./assets/rosaParks.jpg" alt=""></div>`)
 }
+
+// myApp.answerSelect = () => {
+//     $('.imgContainer').on('click', function () {
+//        if( === myApp.info.questions[`quote${[myApp.counter]}`.imgUrl]);
+//     })
+// }
+
+console.log($(this).find('img').attr('src'));
+
+myApp.answerSelect();   
 
 // APP INFO
 myApp.info = {
@@ -151,7 +161,7 @@ myApp.info = {
 
 myApp.init = () => {
     myApp.sendQueryData();
-    myApp.getPossibleAnswer();
+    // myApp.getPossibleAnswer();
   
     
 }
@@ -159,6 +169,7 @@ myApp.init = () => {
 $(function () {
     myApp.init();
     
+ 
 
 
 })
