@@ -143,13 +143,13 @@ myApp.info = {
 
 myApp.init = () => {
     myApp.sendQueryData();
-    // myApp.ticker();
+    myApp.ticker();
 
 }
 
 $(function () {
     myApp.init();
-    myApp.ticker();
+    // myApp.ticker();
 
 
 })
