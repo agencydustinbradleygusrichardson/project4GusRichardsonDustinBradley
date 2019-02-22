@@ -8,6 +8,24 @@ myApp.translateSource = 'en'; //english
 // q is string
 myApp.counter = 2;
 
+
+
+//COUNTDOWN TICKER
+myApp.ticker = () => {
+    let time = 10;
+    const counting = () => {
+        time = time - 1;
+        if (time <= 0) {
+            clearInterval(countDown);
+            $('#timer').replaceWith('<h1>Time up!<h1>');
+        }
+        document.getElementById('timer').innerHTML = time;
+    }
+    const countDown = setInterval(counting, 1000);
+}
+//END COUNTDOWN TICKER
+
+
 //RANDOM NUMBER GENERATOR FUNCTION HOPEFULLY USED TO TRY AND GET THE RANDOMIZATION TO WORK - NOT CALLED CURRENTLY WILL ONLY DO THIS
 myApp.getRanAnswer = () => {
     return Math.floor(Math.random() * 2) + 1
@@ -20,7 +38,10 @@ myApp.addToCounter = () => {
 
 // SENDING SEARCH QUERY FOR THE FIRST TIME - CALLED IN FUNCTION INIT
 myApp.sendQueryData = () => {
+<<<<<<< HEAD
     // console.log(myApp.info.questions[`quote${[myApp.counter]}`].quoteText)
+=======
+>>>>>>> origin
     $.ajax({
         url: myApp.apiUrl,
         method: 'GET',
@@ -132,6 +153,7 @@ myApp.info = {
 
 myApp.init = () => {
     myApp.sendQueryData();
+    myApp.ticker();
 
   
     
@@ -139,6 +161,9 @@ myApp.init = () => {
 
 $(function () {
     myApp.init();
+    // myApp.ticker();
+
+
 })
 
 
