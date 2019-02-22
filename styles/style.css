@@ -137,7 +137,6 @@ main {
 .question {
     width: 40%;
     height: 50%;
-    /* border: 2px solid blue; */
     padding: 3rem;
     text-align:center;
     font-size: 2.5rem;
@@ -160,7 +159,6 @@ main {
     justify-content: center;
     align-items:center;
     flex-wrap:wrap;
-    transform: translateY(-50px);
     padding: 1rem;
 
     
