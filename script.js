@@ -8,6 +8,24 @@ myApp.translateSource = 'en'; //english
 // q is string
 myApp.counter = 1;
 
+
+
+//COUNTDOWN TICKER
+myApp.ticker = () => {
+    let time = 10;
+    const counting = () => {
+        time = time - 1;
+        if (time <= 0) {
+            clearInterval(countDown);
+            $('#timer').replaceWith('<h1>Time up!<h1>');
+        }
+        document.getElementById('timer').innerHTML = time;
+    }
+    const countDown = setInterval(counting, 1000);
+}
+//END COUNTDOWN TICKER
+
+
 //RANDOM NUMBER GENERATOR FUNCTION HOPEFULLY USED TO TRY AND GET THE RANDOMIZATION TO WORK - NOT CALLED CURRENTLY WILL ONLY DO THIS
 myApp.getRanAnswer = () => {
     return Math.floor(Math.random() * 2) + 1
@@ -20,10 +38,6 @@ myApp.addToCounter = () => {
 
 // SENDING SEARCH QUERY FOR THE FIRST TIME - CALLED IN FUNCTION INIT
 myApp.sendQueryData = () => {
-<<<<<<< HEAD
-    // console.log(myApp.info.questions[`quote${[myApp.counter]}`].quoteText)
-=======
->>>>>>> 377c5fb5d8bd4ce89c17f44b81fbdc8ad0dd55dd
     $.ajax({
         url: myApp.apiUrl,
         method: 'GET',
@@ -33,20 +47,12 @@ myApp.sendQueryData = () => {
             target: myApp.translateTarget,
             dataType: 'JSON',
             //NEED TO UPDATE QUOTE NUMBER WITH COUNTER FUNCTION
-<<<<<<< HEAD
             q: myApp.info.questions[`quote${[myApp.counter]}`].quoteText,
-=======
-            q:myApp.info.questions[`quote${[myApp.counter]}`].quoteText,
->>>>>>> 377c5fb5d8bd4ce89c17f44b81fbdc8ad0dd55dd
         }
     }).then(function (data) {
         const translatedText = data.data.translations[0].translatedText;
         myApp.returnQueryData(translatedText);
-<<<<<<< HEAD
     })
-=======
-    })   
->>>>>>> 377c5fb5d8bd4ce89c17f44b81fbdc8ad0dd55dd
 }
 
 // RETURN BACK THE TRANSLATED QUERY - CALLED IN SEND QUERY FUNCTION. PASSES IN THE ORIGINALLY TRANSLATED DATA AND RETURNS IT BACK IN ENGLISH.
@@ -137,11 +143,15 @@ myApp.info = {
 
 myApp.init = () => {
     myApp.sendQueryData();
+    // myApp.ticker();
 
 }
 
 $(function () {
     myApp.init();
+    myApp.ticker();
+
+
 })
 
 
