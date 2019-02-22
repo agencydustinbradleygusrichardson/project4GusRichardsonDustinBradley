@@ -28,7 +28,7 @@ myApp.ticker = () => {
 
 //RANDOM NUMBER GENERATOR FUNCTION HOPEFULLY USED TO TRY AND GET THE RANDOMIZATION TO WORK - NOT CALLED CURRENTLY WILL ONLY DO THIS
 myApp.getRanAnswer = () => {
-    return Math.floor(Math.random() * 2) + 1
+    return Math.floor(Math.random() * 3) + 1
 }
 
 // ADD TO COUNTER FUNCTION - NOT CALLED. ADDS TO COUNTER TO CONTROL ROUND. NEEDS TO BE CONNECTED TO SOME KIND OF NEXT ROUND BUTTON OR EVENT
@@ -101,20 +101,29 @@ myApp.appendAnswers = () => {
 
 myApp.checkUserResponse = () => {
     $('.imgContainer').on('click', function () {
-          
-          if (($(this).find("p")[0].innerHTML) === myApp.info.questions[`quote${[myApp.counter]}`].author) {
-              console.log('Yaaas')
-          }
 
-      })
+        if (($(this).find("p")[0].innerHTML) === myApp.info.questions[`quote${[myApp.counter]}`].author) {
+            console.log('Yaaas')
+        }
+
+    })
 }
+
+myApp.answerSelect = () => {
+    $('.imgContainer').on('click', function () {
+        console.log(($(this).find('img[src="./assets/marshallMcluhan.jpg"')));
+
+    })
+}
+
+
 
 // APP INFO
 myApp.info = {
     questions: {
         quote1: {
             author: 'Marshall Mcluhan',
-            quoteText: 'The medium is the message',
+            quoteText: 'Anyone who tries to make a distinction between education and entertainment does not know the first thing about either',
             imgUrl: './assets/marshallMcluhan.jpg',
         },
         quote2: {
@@ -151,12 +160,13 @@ myApp.init = () => {
     myApp.sendQueryData();
     myApp.ticker();
 
-  
-    
+
+
 }
 
 $(function () {
     myApp.init();
+    myApp.answerSelect();
     // myApp.ticker();
 
 
