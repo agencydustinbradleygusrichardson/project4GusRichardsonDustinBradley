@@ -4,11 +4,20 @@ article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary
 
 * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
+h1 {
+    font-family: 'ZCOOL QingKe HuangYou', cursive;
+}
+
+p {
+    font-family: 'Open Sans', sans-serif;
+}
+
 header {
     width: 100vw;
     height: 20vh;
     border: 4px solid pink;
     display: flex;
+    background: rgb(89, 204, 242)
 }
 
 header div {

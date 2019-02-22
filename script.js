@@ -10,7 +10,7 @@ myApp.counter = 1;
 // myApp.updateCounter = counter++;
 
 myApp.sendQueryData = () => {
-    console.log(myApp.info.questions[`quote${[myApp.counter]}`].quoteText)
+    // console.log(myApp.info.questions[`quote${[myApp.counter]}`].quoteText)
     $.ajax({
         url: myApp.apiUrl,
         method: 'GET',
@@ -20,13 +20,12 @@ myApp.sendQueryData = () => {
             target: myApp.translateTarget,
             dataType: 'JSON',
             //NEED TO UPDATE QUOTE NUMBER WITH COUNTER FUNCTION
-            q: myApp.info.questions.quote.quoteText,
+            q: myApp.info.questions[`quote${[myApp.counter]}`].quoteText,
         }
     }).then(function (data) {
         const translatedText = data.data.translations[0].translatedText;
         myApp.returnQueryData(translatedText);
     })
-    
 }
 
 myApp.returnQueryData = (translateQuery) => {
@@ -45,9 +44,17 @@ myApp.returnQueryData = (translateQuery) => {
     })
 }
 
+// write function that randomizes dummy images
+
+// function to append dummy images to DOM
+
+//function to append the question to the DOM
+
+//function to update score and trigger next round
+
 
 myApp.info = {
-    questions : {
+    questions: {
         quote1: {
             author: 'Marshall Mcluhan',
             quoteText: 'The medium is the message',
@@ -63,14 +70,14 @@ myApp.info = {
             author: 'Rosa Parks',
             quoteText: 'I have learned over the years that when one\'s mind is made up, this diminishes fear; knowing what must be done does away with fear.',
             imgUrl: './assets/rosaParks.jpg',
-               
+
         },
         quote: {
             author: 'Maya Angelou',
             quoteText: 'We delight in the beauty of the butterfly, but rarely admit the changes it has gone through to achieve that beauty.',
             imgUrl: './assets/mayaAngelou.jpg',
         }
-        
+
     },
     dummyAnswers: {
         answer1: {
@@ -86,9 +93,9 @@ myApp.info = {
 
 myApp.init = () => {
     myApp.sendQueryData();
-    
+
 }
 
-$(function () { 
+$(function () {
     myApp.init();
 })
