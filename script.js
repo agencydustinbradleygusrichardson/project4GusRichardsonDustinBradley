@@ -28,7 +28,7 @@ myApp.ticker = () => {
 
 //RANDOM NUMBER GENERATOR FUNCTION HOPEFULLY USED TO TRY AND GET THE RANDOMIZATION TO WORK - NOT CALLED CURRENTLY WILL ONLY DO THIS
 myApp.getRanAnswer = () => {
-    return Math.floor(Math.random() * 2) + 1
+    return Math.floor(Math.random() * 3) + 1
 }
 
 // ADD TO COUNTER FUNCTION - NOT CALLED. ADDS TO COUNTER TO CONTROL ROUND. NEEDS TO BE CONNECTED TO SOME KIND OF NEXT ROUND BUTTON OR EVENT
@@ -114,7 +114,7 @@ myApp.info = {
     questions: {
         quote1: {
             author: 'Marshall Mcluhan',
-            quoteText: 'The medium is the message',
+            quoteText: 'Anyone who tries to make a distinction between education and entertainment does not know the first thing about either',
             imgUrl: './assets/marshallMcluhan.jpg',
         },
         quote2: {
@@ -154,22 +154,53 @@ myApp.info = {
         './assets/ghandi.jpg',
         './assets/johnLennon.jpg',
         './assets/winstonChurchill.jpg',
-        './assets/peterMnasbridge.jpg'       
+        './assets/peterMnasbridge.jpg'
     ]
 }
 
 
+myApp.answerSelect = () => {
+    $('.imgContainer').on('click', () => {
+
+        console.log($(this).find('img').attr('src'));
+        // if ($(this).find('img').attr('src') === myApp.info.questions[`quote${[myApp.counter]}`].imgUrl) {
+        //     console.log('true');
+        // } else {
+        //     console.log('false');
+
+        //     console.log(myApp.info.questions[`quote${[myApp.counter]}`].imgUrl);
+        // }
+
+
+    });
+};
+
+
+
+// console.log($('.imgContainer').children('img'));
+myApp.answerSelect();
+
 myApp.init = () => {
     myApp.sendQueryData();
+<<<<<<< HEAD
     // myApp.getPossibleAnswer();
   
     
+=======
+    myApp.ticker();
+
+>>>>>>> 37809f173d471c454620e9e63cbe9f25dfe6ba1d
 }
 
 $(function () {
     myApp.init();
+<<<<<<< HEAD
     
  
+=======
+    myApp.answerSelect();
+    // myApp.ticker();
+>>>>>>> 37809f173d471c454620e9e63cbe9f25dfe6ba1d
 
 
 })
