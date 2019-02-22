@@ -150,27 +150,40 @@ myApp.info = {
     ]
 }
 
+myApp.startScore = 0;
+
+myApp.updateScore = function () {
+    myApp.startScore++;
+    $('#score').empty();
+    $('#score').append(`${myApp.startScore}`);
+}
+
+myApp.reduceScore = function () {
+    myApp.startScore--;
+    $('#score').empty();
+    $('#score').append(`${myApp.startScore}`);
+}
 
 myApp.answerSelect = () => {
-    $('.imgContainer').on('click', () => {
+    $('.imgContainer').on('click', function () {
 
         console.log($(this).find('img').attr('src'));
-        // if ($(this).find('img').attr('src') === myApp.info.questions[`quote${[myApp.counter]}`].imgUrl) {
-        //     console.log('true');
-        // } else {
-        //     console.log('false');
-
-        //     console.log(myApp.info.questions[`quote${[myApp.counter]}`].imgUrl);
-        // }
-
-
+        if ($(this).find('img').attr('src') === myApp.info.questions[`quote${[myApp.counter]}`].imgUrl) {
+            console.log('true');
+            // newScore = myApp.startScore + 1;
+            // $('#score').html(newScore);
+            myApp.updateScore();
+        } else {
+            console.log('false');
+            myApp.reduceScore();
+        }
     });
 };
 
 
 
 // console.log($('.imgContainer').children('img'));
-myApp.answerSelect();
+// myApp.answerSelect();
 
 myApp.init = () => {
     myApp.sendQueryData();
