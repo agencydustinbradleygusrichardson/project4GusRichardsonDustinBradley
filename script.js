@@ -6,7 +6,7 @@ myApp.apiUrl = 'https://translation.googleapis.com/language/translate/v2/';
 myApp.translateTarget = 'hu'; //hungarian
 myApp.translateSource = 'en'; //english
 // q is string
-myApp.counter = 1;
+myApp.counter = 2;
 
 //RANDOM NUMBER GENERATOR FUNCTION HOPEFULLY USED TO TRY AND GET THE RANDOMIZATION TO WORK - NOT CALLED CURRENTLY WILL ONLY DO THIS
 myApp.getRanAnswer = () => {
@@ -65,16 +65,20 @@ myApp.appendQuestion = (newText) => {
 // APPENDS POSSIBLE ANSWERS TO SCREEN DYNAMICALLY - CALLED IN THEN FUNCTION OF RETURNQUERYDATA. AKA ONCE WE HAVE THE DATA THROW THE QUESTION UP
 myApp.appendAnswers = () => {
     //USE TEMPLATE LITERALS IN ORDER TO GET A RANDOM URL()
-    $('#container1').css({ "background-image": "url('assets/celineDion.jpg')" })
-    $('#container2').css({
-        "background-image": "url('assets/rosaParks.jpg')"
-    })
-    $('#container3').css({
-        "background-image": "url('assets/mayaAngelou.jpg')"
-    })
-    $('#container4').css({
-        "background-image": "url('assets/martinLutherKingJr.jpg')"
-    })
+    $('#container1').append(`<div class='answer1' role='button' tabindex='0'> <img src="./assets/martinLutherKingJr.jpg" alt=""><h4>${myApp.info.dummyAnswers.answer1.author}</h4></div>`)
+    $('#container2').append(`<div class='answer2' role='button'  tabindex='0'><img src="./assets/celineDion.jpg" alt=""><h4>${myApp.info.dummyAnswers.answer1.author}</h4></div>`)
+    $('#container3').append(`<div class='answer3' role='button'  tabindex='0'> <img src="./assets/marshallMcluhan.jpg" alt=""><h4>${myApp.info.dummyAnswers.answer1.author}</div>`)
+    $('#container4').append(`<div class='answer4' role='button'  tabindex='0'><img src="./assets/rosaParks.jpg" alt=""><h4>${myApp.info.dummyAnswers.answer1.author}</h4></div>`)
+}
+
+myApp.checkUserResponse = () => {
+    $('.imgContainer').on('click', function () {
+          
+          if (($(this).find("p")[0].innerHTML) === myApp.info.questions[`quote${[myApp.counter]}`].author) {
+              console.log('Yaaas')
+          }
+
+      })
 }
 
 // APP INFO
@@ -110,13 +114,15 @@ myApp.info = {
             imgUrl: './assets/celineDion.jpg',
         },
         answer2: {
-            author: ''
+            author: 'George W. Bush'
         }
     }
 }
 
 myApp.init = () => {
     myApp.sendQueryData();
+
+  
     
 }
 
