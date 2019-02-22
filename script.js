@@ -62,6 +62,8 @@ myApp.returnQueryData = (translateQuery) => {
 myApp.appendQuestion = (newText) => {
     $('.question').empty().append(`${newText}`);
 }
+
+
 // APPENDS POSSIBLE ANSWERS TO SCREEN DYNAMICALLY - CALLED IN THEN FUNCTION OF RETURNQUERYDATA. AKA ONCE WE HAVE THE DATA THROW THE QUESTION UP
 myApp.appendAnswers = () => {
     //USE TEMPLATE LITERALS IN ORDER TO GET A RANDOM URL()
