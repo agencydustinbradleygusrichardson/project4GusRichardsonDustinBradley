@@ -6,16 +6,26 @@ article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary
 
 h1 {
     font-family: 'ZCOOL QingKe HuangYou', cursive;
+    font-size: 80px;
+    color: rgb(255, 217, 0);
+    text-shadow: 3px 3px  rgb(250, 86, 149);
+    /* color: rgb(250, 86, 149); */
+    /* color: rgb(251, 152, 190); */
+    /* color: rgb(250, 24, 111); */
 }
+
+
 
 p {
     font-family: 'Open Sans', sans-serif;
 }
 
 header {
-    width: 100vw;
-    height: 20vh;
-    border: 4px solid pink;
+    width: 100%;
+    max-width: 100%;
+    height: 25vh;
+    border: 8px ridge rgb(250, 86, 149);
+    /* border: 8px ridge rgb(250, 86, 149); */
     display: flex;
     background: rgb(89, 204, 242)
 }
@@ -29,7 +39,6 @@ header div {
 
 .titleContainer {
     width: 60%;
-    border: 2px solid purple;
 }
 
 .timerContainer {
