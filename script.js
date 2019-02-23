@@ -220,21 +220,25 @@ myApp.answerSelect = () => {
        
         // CHECKS IF ANSWER IS CORRECT
         if ($(this).find('img').attr('src') === myApp.info.questions[`quote${[myApp.counter]}`].imgUrl) {
-           
-            // $('.imgContainer').not(this).animate({
-            //     opacity: '0',
-            // }, 200)
 
-            // $(this).css({
-            //     position: 'absolute',
-            // }).animate({
-            //     top: '4rem',
-            //     width: '70%',
+            $('.question').empty().append(`<h2>Correct!</h2>`)
+           
+            $('.imgContainer').not(this).css({
+                 display: 'none',
+            })
+
+            $(this).css({
+                transform: 'scale(1.5)',
+                 
             //     height: '500px'
-            // })
+            // }).animate({
+            //     bottom: '20rem',
+            //     width: '70%',
+            })
          
             myApp.updateScore();
         } else {
+            $('.question').empty().append(`<h2>Wrong!</h2>`)
             $('.imgContainer').not(this).animate({
                 opacity: '0'
             }, 200)
@@ -249,6 +253,11 @@ myApp.reset = () => {
     $('.imgContainer').empty();
     $('#timer').empty();
 
+    $('.imgContainer').css({
+        // display: 'inline-block',
+        transform: 'scale(1)'
+    })
+
     
 }
 
@@ -258,7 +267,6 @@ myApp.nextRound = () => {
         myApp.reset();
         myApp.sendQueryData();
         myApp.answerSelect();
-        console.log(countDown);
 
         //  $('.imgContainer').animate({
         //      opacity: '1',
