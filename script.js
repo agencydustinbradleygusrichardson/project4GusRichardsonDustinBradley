@@ -6,35 +6,56 @@ myApp.apiUrl = 'https://translation.googleapis.com/language/translate/v2/';
 myApp.translateTarget = 'hu'; //hungarian
 myApp.translateSource = 'en'; //english
 // q is string
-myApp.counter = 2;
+myApp.counter = 1;
 
 
 
 //COUNTDOWN TICKER
+$('.imgContainer').click(function () {
+    $(this).data('clicked', true)
+})
+
+myApp.countDown;
 myApp.ticker = () => {
+
     let time = 10;
     const counting = () => {
         time = time - 1;
         if (time <= 0) {
-            clearInterval(countDown);
-            $('#timer').replaceWith('<h1>Time up!<h1>');
+            clearInterval(myApp.countDown);
+            $('#timer').replaceWith('<h1> Time Up!</h1>')
         }
+        //     return;
+        // // } else if (time <= 0) {
+        // //      clearInterval(myApp.countDown);
+        // //      $('#timer').replaceWith('<h1>Time up!<h1>');
+        // // }
         document.getElementById('timer').innerHTML = time;
     }
-    const countDown = setInterval(counting, 1000);
+    myApp.countDown = setInterval(counting, 1000);
+
+}
+
+myApp.stopTimer = () => {
+    $('.imgContainer').on('click', function () {
+        clearInterval(myApp.countDown)
+    })
+}
+
+myApp.resetTimer = () => {
+    $('.nextRound').on('click', function () {
+        myApp.ticker();
+    })
 }
 //END COUNTDOWN TICKER
 
 
 //RANDOM NUMBER GENERATOR FUNCTION HOPEFULLY USED TO TRY AND GET THE RANDOMIZATION TO WORK - NOT CALLED CURRENTLY WILL ONLY DO THIS
-myApp.getRanAnswer = () => {
-    return Math.floor(Math.random() * 3) + 1
-}
 
 // ADD TO COUNTER FUNCTION - NOT CALLED. ADDS TO COUNTER TO CONTROL ROUND. NEEDS TO BE CONNECTED TO SOME KIND OF NEXT ROUND BUTTON OR EVENT
-myApp.addToCounter = () => {
-    myApp.updateCounter = myApp.counter++;
-}
+// myApp.addToCounter = () => {
+//     myApp.updateCounter = myApp.counter++;
+// }
 
 // SENDING SEARCH QUERY FOR THE FIRST TIME - CALLED IN FUNCTION INIT
 myApp.sendQueryData = () => {
@@ -72,6 +93,10 @@ myApp.returnQueryData = (translateQuery) => {
         const finalTranslation = data.data.translations[0].translatedText;
         myApp.appendQuestion(finalTranslation);
         myApp.appendAnswers();
+         myApp.ticker();
+
+       
+        
     })
 }
 
@@ -89,25 +114,22 @@ myApp.appendQuestion = (newText) => {
     $('.question').empty().append(`${newText}`);
 }
 
-
 // APPENDS POSSIBLE ANSWERS TO SCREEN DYNAMICALLY - CALLED IN THEN FUNCTION OF RETURNQUERYDATA. AKA ONCE WE HAVE THE DATA THROW THE QUESTION UP
 myApp.appendAnswers = () => {
     //USE TEMPLATE LITERALS IN ORDER TO GET A RANDOM URL()
-    $('#container1').append(`<div class='answer1' role='button' tabindex='0'> <img src="./assets/martinLutherKingJr.jpg" alt=""></div>`)
-    $('#container2').append(`<div class='answer2' role='button'  tabindex='0'><img src="./assets/celineDion.jpg" alt=""></div>`)
-    $('#container3').append(`<div class='answer3' role='button'  tabindex='0'> <img src="./assets/marshallMcluhan.jpg" alt=""></div>`)
-    $('#container4').append(`<div class='answer4' role='button'  tabindex='0'><img src="./assets/rosaParks.jpg" alt=""></div>`)
+    $('#container1').append(`<div class='answer1' id='answer' tabindex="0" role="button" aria-pressed="false" aria-disabled='true'> <img src="${myApp.info.questions[`quote${[myApp.counter]}`].dummyAnswers[0]}" alt=""></div>`)
+
+    $('#container2').append(`<div class='answer2' id='answer' tabindex="0" role="button" aria-pressed="false"><img src="${myApp.info.questions[`quote${[myApp.counter]}`].dummyAnswers[1]}" alt=""></div>`)
+
+    $('#container3').append(`<div class='answer3'  id='answer' tabindex="0" role="button" aria-pressed="false"> <img src="${myApp.info.questions[`quote${[myApp.counter]}`].dummyAnswers[2]}" alt=""></div>`)
+
+    $('#container4').append(`<div class='answer4'  id='answer' tabindex="0" role="button" aria-pressed="false"><img src="${myApp.info.questions[`quote${[myApp.counter]}`].dummyAnswers[3]}" alt=""></div>`)
 }
 
-// myApp.answerSelect = () => {
-//     $('.imgContainer').on('click', function () {
-//        if( === myApp.info.questions[`quote${[myApp.counter]}`.imgUrl]);
-//     })
-// }
 
-console.log($(this).find('img').attr('src'));
 
-myApp.answerSelect();   
+
+
 
 // APP INFO
 myApp.info = {
@@ -116,17 +138,37 @@ myApp.info = {
             author: 'Marshall Mcluhan',
             quoteText: 'Anyone who tries to make a distinction between education and entertainment does not know the first thing about either',
             imgUrl: './assets/marshallMcluhan.jpg',
+            dummyAnswers: [
+                 './assets/celineDion.jpg',
+                 './assets/georgeWBush.jpeg',
+                './assets/abeLincoln.jpg',
+                './assets/marshallMcluhan.jpg'
+                 
+            ]
         },
         quote2: {
             author: 'Martin Luther King, Jr.',
             quoteText: 'The ultimate measure of a man is not where he stands in moments of comfort and convenience, but where he stands at times of challenge and controversy.',
             imgUrl: './assets/martinLutherKingJr.jpg',
+            dummyAnswers: [
+                './assets/albertEinstein.jpg',
+                './assets/davidSuzuki.jpg',
+                './assets/franzKafka.jpg',
+                './assets/martinLutherKingJr.jpg'
+            ]
 
         },
         quote3: {
             author: 'Rosa Parks',
             quoteText: 'I have learned over the years that when one\'s mind is made up, this diminishes fear; knowing what must be done does away with fear.',
             imgUrl: './assets/rosaParks.jpg',
+            dummyAnswers: [
+                 './assets/bruceLee.jpg',
+                 './assets/anneFrank.jpg',
+                './assets/hunterSThompson.jpg',
+                 './assets/rosaParks.jpg'
+                
+            ]
 
         },
         quote4: {
@@ -134,86 +176,120 @@ myApp.info = {
             quoteText: 'We delight in the beauty of the butterfly, but rarely admit the changes it has gone through to achieve that beauty.',
             imgUrl: './assets/mayaAngelou.jpg',
             dummyAnswers: [
-
+                 './assets/salvadorDali.jpg',
+                 './assets/steveJobs.png',
+                './assets/ghandi.jpg',
+                 './assets/mayaAngelou.jpg'
             ]
         }
 
     },
-    dummyAnswers: [
-        './assets/celineDion.jpg',
-        './assets/georgeWBush.jpeg',
-        './assets/abeLincoln.jpg',
-        './assets/albertEinstein.jpg',
-        './assets/davidSuzuki.jpg',
-        './assets/franzKafka.jpg',
-        './assets/bruceLee.jpg',
-        './assets/anneFrank.jpg',
-        './assets/hunterSThompson.jpg',
-        './assets/salvadorDali.jpg',
-        './assets/steveJobs.png',
-        './assets/ghandi.jpg',
-        './assets/johnLennon.jpg',
-        './assets/winstonChurchill.jpg',
-        './assets/peterMnasbridge.jpg'
-    ]
+    // dummyAnswers: [
+    
+    //     './assets/johnLennon.jpg',
+    //     './assets/winstonChurchill.jpg',
+    //     './assets/peterMnasbridge.jpg'
+    // ]
 }
 
+
+// SCORE FUNCTIONALITY
 myApp.startScore = 0;
 
+
+// ADD ONE TO SCORE
 myApp.updateScore = function () {
     myApp.startScore++;
     $('#score').empty();
     $('#score').append(`${myApp.startScore}`);
 }
 
+// MINUS ONE TO SCORE
 myApp.reduceScore = function () {
     myApp.startScore--;
     $('#score').empty();
     $('#score').append(`${myApp.startScore}`);
 }
 
+
+
+// WHAT HAPPENS WHEN WE CLICK ON AN ANSWER
 myApp.answerSelect = () => {
     $('.imgContainer').on('click', function () {
-
-        console.log($(this).find('img').attr('src'));
+        // $('#answer').attr('aria-disabled', 'true')
+       
+        // CHECKS IF ANSWER IS CORRECT
         if ($(this).find('img').attr('src') === myApp.info.questions[`quote${[myApp.counter]}`].imgUrl) {
-            console.log('true');
-            // newScore = myApp.startScore + 1;
-            // $('#score').html(newScore);
+           
+            // $('.imgContainer').not(this).animate({
+            //     opacity: '0',
+            // }, 200)
+
+            // $(this).css({
+            //     position: 'absolute',
+            // }).animate({
+            //     top: '4rem',
+            //     width: '70%',
+            //     height: '500px'
+            // })
+         
             myApp.updateScore();
         } else {
-            console.log('false');
+            $('.imgContainer').not(this).animate({
+                opacity: '0'
+            }, 200)
+            
             myApp.reduceScore();
         }
     });
 };
 
+myApp.reset = () => {
+    $('.question').empty();
+    $('.imgContainer').empty();
+    $('#timer').empty();
+
+    
+}
+
+myApp.nextRound = () => {
+    $('.nextRound').on('click', function() {
+        myApp.counter++
+        myApp.reset();
+        myApp.sendQueryData();
+        myApp.answerSelect();
+        console.log(countDown);
+
+        //  $('.imgContainer').animate({
+        //      opacity: '1',
+        //  }, 200)
+
+        //  $('.imgContainer').css({
+        //      position: 'relative',
+        //  }).animate({
+        //      top: '4rem',
+        //      width: '70%'
+        //  })
+        
+            
+        })
+    }
 
 
-// console.log($('.imgContainer').children('img'));
-// myApp.answerSelect();
+
 
 myApp.init = () => {
     myApp.sendQueryData();
-<<<<<<< HEAD
-    // myApp.getPossibleAnswer();
-  
-    
-=======
-    myApp.ticker();
+    myApp.answerSelect();
+    myApp.nextRound();
+    myApp.stopTimer();
+    myApp.resetTimer();
 
->>>>>>> 37809f173d471c454620e9e63cbe9f25dfe6ba1d
 }
 
 $(function () {
-    myApp.init();
-<<<<<<< HEAD
-    
- 
-=======
-    myApp.answerSelect();
-    // myApp.ticker();
->>>>>>> 37809f173d471c454620e9e63cbe9f25dfe6ba1d
+    myApp.init();   
+   
 
 
 })
