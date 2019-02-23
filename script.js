@@ -40,7 +40,8 @@ myApp.stopTimer = () => {
 
 // myApp.resetTimer = () => {
 //     $('.nextRound').on('click', function () {
-//         myApp.ticker();
+//         // clearInterval(myApp.ticker)
+//         // myApp.ticker();
 //     })
 // }
 //END COUNTDOWN TICKER
@@ -190,12 +191,13 @@ myApp.info = {
 
 
 // SCORE FUNCTIONALITY
-myApp.startScore = 0;
 
+
+myApp.startScore = 0;
 
 // ADD ONE TO SCORE
 myApp.updateScore = function () {
-    myApp.startScore++;
+    myApp.startScore += 1;
     $('#score').empty();
     $('#score').append(`${myApp.startScore}`);
 }
@@ -212,7 +214,6 @@ myApp.reduceScore = function () {
 // WHAT HAPPENS WHEN WE CLICK ON AN ANSWER
 myApp.answerSelect = () => {
     $('.imgContainer').on('click', function () {
-
         // CHECKS IF ANSWER IS CORRECT
         if ($(this).find('img').attr('src') === myApp.info.questions[`quote${[myApp.counter]}`].imgUrl) {
 
@@ -224,11 +225,16 @@ myApp.answerSelect = () => {
 
             $(this).css({
                 transform: 'scale(1.5)',
+
+                //     height: '500px'
+                // }).animate({
+                //     bottom: '20rem',
+                //     width: '70%',
             })
 
             myApp.updateScore();
             $('.nextRound').removeAttr('disabled')
-            console.log(myApp.startScore)
+          
 
         } else if ($(this).find('img').attr('src') !== myApp.info.questions[`quote${[myApp.counter]}`].imgUrl) {
             $('.nextRound').removeAttr("disabled");
@@ -253,6 +259,7 @@ myApp.answerSelect = () => {
             // $('#timer').replaceWith('<h1> Time Up!</h1>')
             $('.nextRound').removeAttr('disabled')
         }
+
     });
 };
 
@@ -282,51 +289,24 @@ console.log($('#timer')[0])
             })
         }
 
+myApp.init = () => {
 
+    myApp.sendQueryData();
+    myApp.answerSelect();
+    myApp.nextRound();
 
+}
+    $(function () {
 
-        myApp.init = () => {
-            myApp.sendQueryData();
-            myApp.answerSelect();
-            // myApp.stopTimer();
-            // myApp.resetTimer();
-            myApp.nextRound();
+        // START OF GAME
+        $('.letsPlay').on('click', function () {
+            $('.startGame').animate({
+                height: '0'
+            }, 'slow').empty()
+            
+            $('.nextRound').attr('disabled', 'disabled');
+            
+            myApp.init();
+        })
+    })
 
-
-        }
-
-        $(function () {
-
-            // START OF GAME
-            // $('.letsPlay').on('click', function () {
-            //     $('.startGame').animate({
-            //         height: '0'
-            //     }, 'slow').empty()
-
-            //     $('.nextRound').attr('disabled', 'disabled');
-                myApp.init();
-
-            })
-
-
-
-        // })
-
-
-        // STUART POSSIBLE ANSWER NOTES> PUT ANSWERS IN NEW ARRAY AND APPEND. ADD A RANDOM NUMBER FUNCTION TO THE FOR EACH SO THAT IT IS CALLED EVERY TIME. THIS WILL GIVE US A RANDOM NUMBER TO PUSH IN FOR EACH ANSWER.
-
-
-        //FOR EACH ITEM GET A RANDOM NUMBER
-
-
-
-
-        // }
-
-
-        // myApp.info.dummyAnswers.map((item) => item.forEach((item2) => {
-        // myApp.ranNum();
-        //     myApp.currentAnswers.push(item2);
-        //     console.log(myApp.currentAnswers);
-        // })
-        // );
