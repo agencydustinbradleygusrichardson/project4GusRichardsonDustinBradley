@@ -20,16 +20,12 @@ myApp.ticker = () => {
 
     let time = 10;
     const counting = () => {
+        myApp.stopTimer();
         time = time - 1;
         if (time <= 0) {
             clearInterval(myApp.countDown);
             $('#timer').replaceWith('<h1> Time Up!</h1>')
         }
-        //     return;
-        // // } else if (time <= 0) {
-        // //      clearInterval(myApp.countDown);
-        // //      $('#timer').replaceWith('<h1>Time up!<h1>');
-        // // }
         document.getElementById('timer').innerHTML = time;
     }
     myApp.countDown = setInterval(counting, 1000);
@@ -42,11 +38,12 @@ myApp.stopTimer = () => {
     })
 }
 
-myApp.resetTimer = () => {
-    $('.nextRound').on('click', function () {
-        myApp.ticker();
-    })
-}
+// myApp.resetTimer = () => {
+//     $('.nextRound').on('click', function () {
+//         // clearInterval(myApp.ticker)
+//         // myApp.ticker();
+//     })
+// }
 //END COUNTDOWN TICKER
 
 
@@ -93,10 +90,10 @@ myApp.returnQueryData = (translateQuery) => {
         const finalTranslation = data.data.translations[0].translatedText;
         myApp.appendQuestion(finalTranslation);
         myApp.appendAnswers();
-         myApp.ticker();
+        myApp.ticker();
 
-       
-        
+
+
     })
 }
 
@@ -139,11 +136,11 @@ myApp.info = {
             quoteText: 'Anyone who tries to make a distinction between education and entertainment does not know the first thing about either',
             imgUrl: './assets/marshallMcluhan.jpg',
             dummyAnswers: [
-                 './assets/celineDion.jpg',
-                 './assets/georgeWBush.jpeg',
+                './assets/celineDion.jpg',
+                './assets/georgeWBush.jpeg',
                 './assets/abeLincoln.jpg',
                 './assets/marshallMcluhan.jpg'
-                 
+
             ]
         },
         quote2: {
@@ -163,11 +160,11 @@ myApp.info = {
             quoteText: 'I have learned over the years that when one\'s mind is made up, this diminishes fear; knowing what must be done does away with fear.',
             imgUrl: './assets/rosaParks.jpg',
             dummyAnswers: [
-                 './assets/bruceLee.jpg',
-                 './assets/anneFrank.jpg',
+                './assets/bruceLee.jpg',
+                './assets/anneFrank.jpg',
                 './assets/hunterSThompson.jpg',
-                 './assets/rosaParks.jpg'
-                
+                './assets/rosaParks.jpg'
+
             ]
 
         },
@@ -176,16 +173,16 @@ myApp.info = {
             quoteText: 'We delight in the beauty of the butterfly, but rarely admit the changes it has gone through to achieve that beauty.',
             imgUrl: './assets/mayaAngelou.jpg',
             dummyAnswers: [
-                 './assets/salvadorDali.jpg',
-                 './assets/steveJobs.png',
+                './assets/salvadorDali.jpg',
+                './assets/steveJobs.png',
                 './assets/ghandi.jpg',
-                 './assets/mayaAngelou.jpg'
+                './assets/mayaAngelou.jpg'
             ]
         }
 
     },
     // dummyAnswers: [
-    
+
     //     './assets/johnLennon.jpg',
     //     './assets/winstonChurchill.jpg',
     //     './assets/peterMnasbridge.jpg'
@@ -194,12 +191,13 @@ myApp.info = {
 
 
 // SCORE FUNCTIONALITY
-myApp.startScore = 0;
 
+
+myApp.startScore = 0;
 
 // ADD ONE TO SCORE
 myApp.updateScore = function () {
-    myApp.startScore++;
+    myApp.startScore += 1;
     $('#score').empty();
     $('#score').append(`${myApp.startScore}`);
 }
@@ -216,35 +214,34 @@ myApp.reduceScore = function () {
 // WHAT HAPPENS WHEN WE CLICK ON AN ANSWER
 myApp.answerSelect = () => {
     $('.imgContainer').on('click', function () {
-        // $('#answer').attr('aria-disabled', 'true')
-       
         // CHECKS IF ANSWER IS CORRECT
         if ($(this).find('img').attr('src') === myApp.info.questions[`quote${[myApp.counter]}`].imgUrl) {
 
             $('.question').empty().append(`<h2>Correct!</h2>`)
-           
+
             $('.imgContainer').not(this).css({
-                 display: 'none',
+                display: 'none',
             })
 
             $(this).css({
                 transform: 'scale(1.5)',
-                 
-            //     height: '500px'
-            // }).animate({
-            //     bottom: '20rem',
-            //     width: '70%',
+
+                //     height: '500px'
+                // }).animate({
+                //     bottom: '20rem',
+                //     width: '70%',
             })
-         
+
             myApp.updateScore();
         } else {
             $('.question').empty().append(`<h2>Wrong!</h2>`)
             $('.imgContainer').not(this).animate({
                 opacity: '0'
             }, 200)
-            
+
             myApp.reduceScore();
         }
+
     });
 };
 
@@ -254,19 +251,20 @@ myApp.reset = () => {
     $('#timer').empty();
 
     $('.imgContainer').css({
-        // display: 'inline-block',
+        display: 'inline-block',
         transform: 'scale(1)'
     })
 
-    
+
 }
 
 myApp.nextRound = () => {
-    $('.nextRound').on('click', function() {
-        myApp.counter++
+    $('.nextRound').on('click', function () {
+        // myApp.resetTimer();
+        myApp.counter++;
         myApp.reset();
         myApp.sendQueryData();
-        myApp.answerSelect();
+        // myApp.answerSelect();
 
         //  $('.imgContainer').animate({
         //      opacity: '1',
@@ -278,10 +276,10 @@ myApp.nextRound = () => {
         //      top: '4rem',
         //      width: '70%'
         //  })
-        
-            
-        })
-    }
+
+
+    })
+}
 
 
 
@@ -290,14 +288,15 @@ myApp.init = () => {
     myApp.sendQueryData();
     myApp.answerSelect();
     myApp.nextRound();
-    myApp.stopTimer();
-    myApp.resetTimer();
+
+
+
 
 }
 
 $(function () {
-    myApp.init();   
-   
+    myApp.init();
+
 
 
 })
