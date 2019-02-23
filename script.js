@@ -20,20 +20,16 @@ myApp.ticker = () => {
 
     let time = 10;
     const counting = () => {
+        myApp.stopTimer();
         time = time - 1;
+
         if (time <= 0) {
             clearInterval(myApp.countDown);
             $('#timer').replaceWith('<h1> Time Up!</h1>')
         }
-        //     return;
-        // // } else if (time <= 0) {
-        // //      clearInterval(myApp.countDown);
-        // //      $('#timer').replaceWith('<h1>Time up!<h1>');
-        // // }
         document.getElementById('timer').innerHTML = time;
     }
     myApp.countDown = setInterval(counting, 1000);
-
 }
 
 myApp.stopTimer = () => {
@@ -42,11 +38,11 @@ myApp.stopTimer = () => {
     })
 }
 
-myApp.resetTimer = () => {
-    $('.nextRound').on('click', function () {
-        myApp.ticker();
-    })
-}
+// myApp.resetTimer = () => {
+//     $('.nextRound').on('click', function () {
+//         myApp.ticker();
+//     })
+// }
 //END COUNTDOWN TICKER
 
 
@@ -93,10 +89,10 @@ myApp.returnQueryData = (translateQuery) => {
         const finalTranslation = data.data.translations[0].translatedText;
         myApp.appendQuestion(finalTranslation);
         myApp.appendAnswers();
-         myApp.ticker();
+        myApp.ticker();
 
-       
-        
+
+
     })
 }
 
@@ -139,11 +135,11 @@ myApp.info = {
             quoteText: 'Anyone who tries to make a distinction between education and entertainment does not know the first thing about either',
             imgUrl: './assets/marshallMcluhan.jpg',
             dummyAnswers: [
-                 './assets/celineDion.jpg',
-                 './assets/georgeWBush.jpeg',
+                './assets/celineDion.jpg',
+                './assets/georgeWBush.jpeg',
                 './assets/abeLincoln.jpg',
                 './assets/marshallMcluhan.jpg'
-                 
+
             ]
         },
         quote2: {
@@ -163,11 +159,11 @@ myApp.info = {
             quoteText: 'I have learned over the years that when one\'s mind is made up, this diminishes fear; knowing what must be done does away with fear.',
             imgUrl: './assets/rosaParks.jpg',
             dummyAnswers: [
-                 './assets/bruceLee.jpg',
-                 './assets/anneFrank.jpg',
+                './assets/bruceLee.jpg',
+                './assets/anneFrank.jpg',
                 './assets/hunterSThompson.jpg',
-                 './assets/rosaParks.jpg'
-                
+                './assets/rosaParks.jpg'
+
             ]
 
         },
@@ -176,16 +172,16 @@ myApp.info = {
             quoteText: 'We delight in the beauty of the butterfly, but rarely admit the changes it has gone through to achieve that beauty.',
             imgUrl: './assets/mayaAngelou.jpg',
             dummyAnswers: [
-                 './assets/salvadorDali.jpg',
-                 './assets/steveJobs.png',
+                './assets/salvadorDali.jpg',
+                './assets/steveJobs.png',
                 './assets/ghandi.jpg',
-                 './assets/mayaAngelou.jpg'
+                './assets/mayaAngelou.jpg'
             ]
         }
 
     },
     // dummyAnswers: [
-    
+
     //     './assets/johnLennon.jpg',
     //     './assets/winstonChurchill.jpg',
     //     './assets/peterMnasbridge.jpg'
@@ -216,91 +212,105 @@ myApp.reduceScore = function () {
 // WHAT HAPPENS WHEN WE CLICK ON AN ANSWER
 myApp.answerSelect = () => {
     $('.imgContainer').on('click', function () {
-        // $('#answer').attr('aria-disabled', 'true')
-       
+
         // CHECKS IF ANSWER IS CORRECT
         if ($(this).find('img').attr('src') === myApp.info.questions[`quote${[myApp.counter]}`].imgUrl) {
 
             $('.question').empty().append(`<h2>Correct!</h2>`)
-           
+
             $('.imgContainer').not(this).css({
-                 display: 'none',
+                display: 'none',
             })
 
             $(this).css({
                 transform: 'scale(1.5)',
-                 
-            //     height: '500px'
-            // }).animate({
-            //     bottom: '20rem',
-            //     width: '70%',
             })
-         
+
             myApp.updateScore();
-        } else {
+            $('.nextRound').removeAttr('disabled')
+            console.log(myApp.startScore)
+
+        } else if ($(this).find('img').attr('src') !== myApp.info.questions[`quote${[myApp.counter]}`].imgUrl) {
+            $('.nextRound').removeAttr("disabled");
             $('.question').empty().append(`<h2>Wrong!</h2>`)
-            $('.imgContainer').not(this).animate({
-                opacity: '0'
-            }, 200)
-            
+            $('.imgContainer').if(this).css({
+                display: 'none',
+            })
+
+
+            //    $('.imgContainer').find('img').attr("src").css({
+            //        transform: 'scale(1.5)',
+
+            //    })
+
             myApp.reduceScore();
+
+            console.log(myApp.startScore)
+
+
+        } else {
+
+            // $('#timer').replaceWith('<h1> Time Up!</h1>')
+            $('.nextRound').removeAttr('disabled')
         }
     });
 };
 
-myApp.reset = () => {
-    $('.question').empty();
-    $('.imgContainer').empty();
-    $('#timer').empty();
+console.log($('#timer')[0])
 
-    $('.imgContainer').css({
-        // display: 'inline-block',
-        transform: 'scale(1)'
-    })
+        myApp.reset = () => {
+            $('.question').empty();
+            $('.imgContainer').empty();
+            $('#timer').empty();
 
-    
-}
+            $('.imgContainer').css({
+                display: 'inline-flex',
+                transform: 'scale(1)'
+            })
 
-myApp.nextRound = () => {
-    $('.nextRound').on('click', function() {
-        myApp.counter++
-        myApp.reset();
-        myApp.sendQueryData();
-        myApp.answerSelect();
 
-        //  $('.imgContainer').animate({
-        //      opacity: '1',
-        //  }, 200)
+        }
 
-        //  $('.imgContainer').css({
-        //      position: 'relative',
-        //  }).animate({
-        //      top: '4rem',
-        //      width: '70%'
-        //  })
-        
-            
-        })
-    }
+        myApp.nextRound = () => {
+            $('.nextRound').on('click', function () {
+                $('.nextRound').attr('disabled', 'disabled');
+                myApp.counter++
+                myApp.reset();
+                myApp.sendQueryData();
+
+
+            })
+        }
 
 
 
 
-myApp.init = () => {
-    myApp.sendQueryData();
-    myApp.answerSelect();
-    myApp.nextRound();
-    myApp.stopTimer();
-    myApp.resetTimer();
-
-}
-
-$(function () {
-    myApp.init();   
-   
+        myApp.init = () => {
+            myApp.sendQueryData();
+            myApp.answerSelect();
+            // myApp.stopTimer();
+            // myApp.resetTimer();
+            myApp.nextRound();
 
 
-})
+        }
+
+        $(function () {
+
+            // START OF GAME
+            // $('.letsPlay').on('click', function () {
+            //     $('.startGame').animate({
+            //         height: '0'
+            //     }, 'slow').empty()
+
+            //     $('.nextRound').attr('disabled', 'disabled');
+                myApp.init();
+
+            })
+
+
+
+        // })
 
 
         // STUART POSSIBLE ANSWER NOTES> PUT ANSWERS IN NEW ARRAY AND APPEND. ADD A RANDOM NUMBER FUNCTION TO THE FOR EACH SO THAT IT IS CALLED EVERY TIME. THIS WILL GIVE US A RANDOM NUMBER TO PUSH IN FOR EACH ANSWER.
@@ -311,7 +321,7 @@ $(function () {
 
 
 
-// }
+        // }
 
 
         // myApp.info.dummyAnswers.map((item) => item.forEach((item2) => {
