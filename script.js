@@ -22,6 +22,7 @@ myApp.ticker = () => {
     const counting = () => {
         myApp.stopTimer();
         time = time - 1;
+
         if (time <= 0) {
             clearInterval(myApp.countDown);
             $('#timer').replaceWith('<h1> Time Up!</h1>')
@@ -29,7 +30,6 @@ myApp.ticker = () => {
         document.getElementById('timer').innerHTML = time;
     }
     myApp.countDown = setInterval(counting, 1000);
-
 }
 
 myApp.stopTimer = () => {
@@ -40,8 +40,12 @@ myApp.stopTimer = () => {
 
 // myApp.resetTimer = () => {
 //     $('.nextRound').on('click', function () {
+<<<<<<< HEAD
 //         // clearInterval(myApp.ticker)
 //         // myApp.ticker();
+=======
+//         myApp.ticker();
+>>>>>>> 34affc68a3cb519071bbf2037175d552bd93c71a
 //     })
 // }
 //END COUNTDOWN TICKER
@@ -214,6 +218,10 @@ myApp.reduceScore = function () {
 // WHAT HAPPENS WHEN WE CLICK ON AN ANSWER
 myApp.answerSelect = () => {
     $('.imgContainer').on('click', function () {
+<<<<<<< HEAD
+=======
+
+>>>>>>> 34affc68a3cb519071bbf2037175d552bd93c71a
         // CHECKS IF ANSWER IS CORRECT
         if ($(this).find('img').attr('src') === myApp.info.questions[`quote${[myApp.counter]}`].imgUrl) {
 
@@ -225,31 +233,56 @@ myApp.answerSelect = () => {
 
             $(this).css({
                 transform: 'scale(1.5)',
+<<<<<<< HEAD
 
                 //     height: '500px'
                 // }).animate({
                 //     bottom: '20rem',
                 //     width: '70%',
+=======
+>>>>>>> 34affc68a3cb519071bbf2037175d552bd93c71a
             })
 
             myApp.updateScore();
-        } else {
+            $('.nextRound').removeAttr('disabled')
+            console.log(myApp.startScore)
+
+        } else if ($(this).find('img').attr('src') !== myApp.info.questions[`quote${[myApp.counter]}`].imgUrl) {
+            $('.nextRound').removeAttr("disabled");
             $('.question').empty().append(`<h2>Wrong!</h2>`)
+<<<<<<< HEAD
             $('.imgContainer').not(this).animate({
                 opacity: '0'
             }, 200)
+=======
+            $('.imgContainer').if(this).css({
+                display: 'none',
+            })
+
+
+            //    $('.imgContainer').find('img').attr("src").css({
+            //        transform: 'scale(1.5)',
+
+            //    })
+>>>>>>> 34affc68a3cb519071bbf2037175d552bd93c71a
 
             myApp.reduceScore();
+
+            console.log(myApp.startScore)
+
+
+        } else {
+
+            // $('#timer').replaceWith('<h1> Time Up!</h1>')
+            $('.nextRound').removeAttr('disabled')
         }
 
     });
 };
 
-myApp.reset = () => {
-    $('.question').empty();
-    $('.imgContainer').empty();
-    $('#timer').empty();
+console.log($('#timer')[0])
 
+<<<<<<< HEAD
     $('.imgContainer').css({
         display: 'inline-block',
         transform: 'scale(1)'
@@ -280,10 +313,33 @@ myApp.nextRound = () => {
 
     })
 }
+=======
+        myApp.reset = () => {
+            $('.question').empty();
+            $('.imgContainer').empty();
+            $('#timer').empty();
+
+            $('.imgContainer').css({
+                display: 'inline-flex',
+                transform: 'scale(1)'
+            })
+
+>>>>>>> 34affc68a3cb519071bbf2037175d552bd93c71a
+
+        }
+
+        myApp.nextRound = () => {
+            $('.nextRound').on('click', function () {
+                $('.nextRound').attr('disabled', 'disabled');
+                myApp.counter++
+                myApp.reset();
+                myApp.sendQueryData();
 
 
+            })
+        }
 
-
+<<<<<<< HEAD
 myApp.init = () => {
     myApp.sendQueryData();
     myApp.answerSelect();
@@ -291,15 +347,43 @@ myApp.init = () => {
 
 
 
+=======
+>>>>>>> 34affc68a3cb519071bbf2037175d552bd93c71a
 
-}
 
+<<<<<<< HEAD
 $(function () {
     myApp.init();
 
+=======
+>>>>>>> 34affc68a3cb519071bbf2037175d552bd93c71a
+
+        myApp.init = () => {
+            myApp.sendQueryData();
+            myApp.answerSelect();
+            // myApp.stopTimer();
+            // myApp.resetTimer();
+            myApp.nextRound();
 
 
-})
+        }
+
+        $(function () {
+
+            // START OF GAME
+            // $('.letsPlay').on('click', function () {
+            //     $('.startGame').animate({
+            //         height: '0'
+            //     }, 'slow').empty()
+
+            //     $('.nextRound').attr('disabled', 'disabled');
+                myApp.init();
+
+            })
+
+
+
+        // })
 
 
         // STUART POSSIBLE ANSWER NOTES> PUT ANSWERS IN NEW ARRAY AND APPEND. ADD A RANDOM NUMBER FUNCTION TO THE FOR EACH SO THAT IT IS CALLED EVERY TIME. THIS WILL GIVE US A RANDOM NUMBER TO PUSH IN FOR EACH ANSWER.
@@ -310,7 +394,7 @@ $(function () {
 
 
 
-// }
+        // }
 
 
         // myApp.info.dummyAnswers.map((item) => item.forEach((item2) => {
