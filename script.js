@@ -160,8 +160,10 @@ myApp.info = {
             imgUrl: './assets/martinLutherKingJr.jpg',
             dummyAnswers: [
                 './assets/albertEinstein.jpg',
+                './assets/martinLutherKingJr.jpg',
                 './assets/davidSuzuki.jpg',
                 './assets/franzKafka.jpg',
+<<<<<<< HEAD
                 './assets/martinLutherKingJr.jpg'
             ],
             altText: [
@@ -169,6 +171,8 @@ myApp.info = {
                 'David Suzuki',
                 'Franz Kafka',
                 'Martin Luther King, Jr.'
+=======
+>>>>>>> 999572ee176e376d0d2c201b833a5fe2af503032
             ]
 
 
@@ -178,9 +182,11 @@ myApp.info = {
             quoteText: 'I have learned over the years that when one\'s mind is made up, this diminishes fear; knowing what must be done does away with fear.',
             imgUrl: './assets/rosaParks.jpg',
             dummyAnswers: [
+                './assets/rosaParks.jpg',
                 './assets/bruceLee.jpg',
                 './assets/anneFrank.jpg',
                 './assets/hunterSThompson.jpg',
+<<<<<<< HEAD
                 './assets/rosaParks.jpg'
             ],
             altText: [
@@ -188,6 +194,8 @@ myApp.info = {
                 'Anne Frank',
                 'Hunter S Thompson',
                 'Rosa Parks'
+=======
+>>>>>>> 999572ee176e376d0d2c201b833a5fe2af503032
             ]
 
         },
@@ -198,22 +206,27 @@ myApp.info = {
             dummyAnswers: [
                 './assets/salvadorDali.jpg',
                 './assets/steveJobs.png',
+                './assets/mayaAngelou.jpg',
                 './assets/ghandi.jpg',
-                './assets/mayaAngelou.jpg'
+            ]
+        },
+        quote5: {
+            author: "Abraham Lincoln",
+            quoteText: 'Folks are usually about as happy as they make their minds up to be',
+            imgUrl: './assets/abeLincoln.jpg',
+            dummyAnswers: [
+                './assets/johnLennon.jpg',
+                './assets/abeLincoln.jpg',
+                './assets/winstonChurchill.jpg',
+                './assets/peterMansbridge.jpg'
             ]
         }
 
     },
-    // dummyAnswers: [
-
-    //     './assets/johnLennon.jpg',
-    //     './assets/winstonChurchill.jpg',
-    //     './assets/peterMnasbridge.jpg'
-    // ]
 }
 
 myApp.endGame = () => {
-    if (myApp.counter === 4) {
+    if (myApp.counter === 5) {
 
 
         $('.endScreen').animate({
