@@ -12,7 +12,7 @@ myApp.counter = 1;
 
 //COUNTDOWN TICKER
 $('.imgContainer').click(function () {
-    $(this).data('clicked', true)
+    $('imgContainer').data('clicked', true)
 })
 
 myApp.countDown;
@@ -38,12 +38,12 @@ myApp.stopTimer = () => {
     })
 }
 
-// myApp.resetTimer = () => {
-//     $('.nextRound').on('click', function () {
-//         // clearInterval(myApp.ticker)
-//         // myApp.ticker();
-//     })
-// }
+myApp.resetTimer = () => {
+    $('.nextRound').on('click', function () {
+        clearInterval(myApp.ticker())
+       
+    })
+}
 //END COUNTDOWN TICKER
 
 
@@ -108,7 +108,7 @@ myApp.returnQueryData = (translateQuery) => {
 
 // APPENDS QUESTION TO SCREEN DYNAMICALLY - PASSED IN TRANSLATED TEXT. CALLED IN THEN FUNCTION OF RETURNQUERYDATA. AKA ONCE WE HAVE THE DATA THROW THE QUESTION UP
 myApp.appendQuestion = (newText) => {
-    $('.question').empty().append(`${newText}`);
+    $('.question').empty().append(`<p>${newText}</P>`);
 }
 
 // APPENDS POSSIBLE ANSWERS TO SCREEN DYNAMICALLY - CALLED IN THEN FUNCTION OF RETURNQUERYDATA. AKA ONCE WE HAVE THE DATA THROW THE QUESTION UP
@@ -141,6 +141,9 @@ myApp.info = {
                 './assets/abeLincoln.jpg',
                 './assets/marshallMcluhan.jpg'
 
+            ],
+            altText: [
+                
             ]
         },
         quote2: {
@@ -153,6 +156,7 @@ myApp.info = {
                 './assets/franzKafka.jpg',
                 './assets/martinLutherKingJr.jpg'
             ]
+
 
         },
         quote3: {
@@ -209,10 +213,12 @@ myApp.reduceScore = function () {
     $('#score').append(`${myApp.startScore}`);
 }
 
-
+myApp.rightAnswer = myApp.info.questions[`quote${[myApp.counter]}`].imgUrl
+// console.log($('.imgContainer').not('img').attr('src', `${myApp.rightAnswer}`))
 
 // WHAT HAPPENS WHEN WE CLICK ON AN ANSWER
 myApp.answerSelect = () => {
+
     $('.imgContainer').on('click', function () {
         // CHECKS IF ANSWER IS CORRECT
         if ($(this).find('img').attr('src') === myApp.info.questions[`quote${[myApp.counter]}`].imgUrl) {
@@ -225,23 +231,23 @@ myApp.answerSelect = () => {
 
             $(this).css({
                 transform: 'scale(1.5)',
-
-                //     height: '500px'
-                // }).animate({
-                //     bottom: '20rem',
-                //     width: '70%',
             })
 
             myApp.updateScore();
             $('.nextRound').removeAttr('disabled')
           
-
-        } else if ($(this).find('img').attr('src') !== myApp.info.questions[`quote${[myApp.counter]}`].imgUrl) {
+        //  ($(this).find('img').attr('src') !== myApp.info.questions[`quote${[myApp.counter]}`].imgUrl)
+        } else {
             $('.nextRound').removeAttr("disabled");
             $('.question').empty().append(`<h2>Wrong!</h2>`)
-            $('.imgContainer').if(this).css({
-                display: 'none',
-            })
+            // $('.imgContainer').animate({
+            //     'opacity': '0'
+            // }, 500);
+           
+            // $('.imgContainer').not('img').attr('src', `${myApp.rightAnswer}`).animate({
+            //     opacity: '0',
+            // })
+            // console.log($('.imgContainer').not('img').attr('src', `${myApp.rightAnswer}`))
 
 
             //    $('.imgContainer').find('img').attr("src").css({
@@ -251,14 +257,10 @@ myApp.answerSelect = () => {
 
             myApp.reduceScore();
 
-            console.log(myApp.startScore)
+            // console.log(myApp.startScore)
 
 
-        } else {
-
-            // $('#timer').replaceWith('<h1> Time Up!</h1>')
-            $('.nextRound').removeAttr('disabled')
-        }
+        } 
 
     });
 };
@@ -284,6 +286,7 @@ console.log($('#timer')[0])
                 myApp.counter++
                 myApp.reset();
                 myApp.sendQueryData();
+                $('.imgContainer').css({'opacity': 1})
 
 
             })
