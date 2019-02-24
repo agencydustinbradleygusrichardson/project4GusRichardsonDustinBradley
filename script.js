@@ -3,10 +3,13 @@ myApp = {}
 // API THINGS
 myApp.apiKey = 'AIzaSyBvRfnsn-GcuAyu3qJVv3zFg8DgPSgmsO8';
 myApp.apiUrl = 'https://translation.googleapis.com/language/translate/v2/';
-myApp.translateTarget = 'hu'; //hungarian
+// myApp.translateTarget = 'hu'; //hungarian
 myApp.translateSource = 'en'; //english
 // q is string
 myApp.counter = 1;
+
+
+myApp.translateTarget = $('#userLang').val();
 
 
 
@@ -70,6 +73,7 @@ myApp.sendQueryData = () => {
     }).then(function (data) {
         const translatedText = data.data.translations[0].translatedText;
         myApp.returnQueryData(translatedText);
+        console.log(translatedText);
     })
 }
 
