@@ -207,6 +207,14 @@ myApp.endGame = () => {
         $('.endScreen h1').animate({
             opacity: '1'
         })
+
+        $('body').css({
+            'overflow': 'hidden'
+        })
+
+        $(window).scrollTop(0);
+
+        $('.appendFinalUserScore').fadeIn().append(`<h2>Your score is ${myApp.startScore}</h2>`);
     }
 }
 
@@ -218,7 +226,7 @@ myApp.startScore = 0;
 
 // ADD ONE TO SCORE
 myApp.updateScore = function () {
-    myApp.startScore += 1;
+    myApp.startScore++;
     $('#score').empty();
     $('#score').append(`${myApp.startScore}`);
 }
@@ -237,6 +245,7 @@ myApp.answerSelect = () => {
         // CHECKS IF ANSWER IS CORRECT
         if ($(this).find('img').attr('src') === myApp.info.questions[`quote${[myApp.counter]}`].imgUrl) {
 
+            $('.nextRound').removeAttr('disabled');
             $('.question').empty().append(`<h2>Correct!</h2><p>${myApp.info.questions[`quote${[myApp.counter]}`].quoteText}</p>`)
 
             $('.imgContainer').not(this).css({
@@ -252,7 +261,6 @@ myApp.answerSelect = () => {
 
             myApp.updateScore();
             myApp.endGame();
-            $('.nextRound').removeAttr('disabled')
 
             //  ($(this).find('img').attr('src') !== myApp.info.questions[`quote${[myApp.counter]}`].imgUrl)
         } else {
@@ -268,6 +276,7 @@ myApp.answerSelect = () => {
             });
             $('.imageAnswers').append(`<div class="answerPopUp"><img src=${myApp.info.questions[`quote${[myApp.counter]}`].imgUrl}></div>`);
             myApp.endGame();
+            myApp.reduceScore();
 
 
 
@@ -279,7 +288,7 @@ myApp.answerSelect = () => {
 
 
 
-        myApp.reduceScore();
+
 
     })
 };
@@ -331,6 +340,8 @@ $(function () {
         $('.startGame').animate({
             height: '0'
         }, 'slow').empty()
+
+        $('body').css({ 'overflow': 'visible' })
 
         $('.nextRound').attr('disabled', 'disabled');
 
