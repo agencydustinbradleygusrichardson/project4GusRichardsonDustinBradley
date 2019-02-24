@@ -264,6 +264,13 @@ main {
     object-fit: cover;
 }
 
+.imageAnswers {
+    position: relative;
+}
+
+.answerPopUp  {
+    position: absolute;
+}
 
 
 .answer1:hover,

@@ -41,7 +41,7 @@ myApp.stopTimer = () => {
 myApp.resetTimer = () => {
     $('.nextRound').on('click', function () {
         clearInterval(myApp.ticker())
-       
+
     })
 }
 //END COUNTDOWN TICKER
@@ -143,7 +143,7 @@ myApp.info = {
 
             ],
             altText: [
-                
+
             ]
         },
         quote2: {
@@ -213,9 +213,6 @@ myApp.reduceScore = function () {
     $('#score').append(`${myApp.startScore}`);
 }
 
-myApp.rightAnswer = myApp.info.questions[`quote${[myApp.counter]}`].imgUrl
-// console.log($('.imgContainer').not('img').attr('src', `${myApp.rightAnswer}`))
-
 // WHAT HAPPENS WHEN WE CLICK ON AN ANSWER
 myApp.answerSelect = () => {
 
@@ -223,74 +220,79 @@ myApp.answerSelect = () => {
         // CHECKS IF ANSWER IS CORRECT
         if ($(this).find('img').attr('src') === myApp.info.questions[`quote${[myApp.counter]}`].imgUrl) {
 
-            $('.question').empty().append(`<h2>Correct!</h2>`)
+            $('.question').empty().append(`<h2>Correct!</h2><p>${myApp.info.questions[`quote${[myApp.counter]}`].quoteText}</p>`)
 
             $('.imgContainer').not(this).css({
                 display: 'none',
             })
 
-            $(this).css({
-                transform: 'scale(1.5)',
-            })
+            if ($(window).width() > 750) {
+
+                $(this).css({
+                    transform: 'scale(1.5)',
+                })
+            }
 
             myApp.updateScore();
             $('.nextRound').removeAttr('disabled')
-          
-        //  ($(this).find('img').attr('src') !== myApp.info.questions[`quote${[myApp.counter]}`].imgUrl)
+
+            //  ($(this).find('img').attr('src') !== myApp.info.questions[`quote${[myApp.counter]}`].imgUrl)
         } else {
+
             $('.nextRound').removeAttr("disabled");
-            $('.question').empty().append(`<h2>Wrong!</h2>`)
-            // $('.imgContainer').animate({
-            //     'opacity': '0'
-            // }, 500);
-           
-            // $('.imgContainer').not('img').attr('src', `${myApp.rightAnswer}`).animate({
-            //     opacity: '0',
+            $('.question').empty().append(`<h2>Wrong!</h2><p>${myApp.info.questions[`quote${[myApp.counter]}`].quoteText}</p>`);
+
+            $('.imgContainer').css({
+                'opacity': '0'
+            })
+            $('.imageAnswers').append(`<div class="answerPopUp"><img src=${myApp.info.questions[`quote${[myApp.counter]}`].imgUrl}></div>`);
+
+
+
+            // $('img').attr('src', `${myApp.rightAnswer}`).css({
+            //     "opacity": "1"
             // })
-            // console.log($('.imgContainer').not('img').attr('src', `${myApp.rightAnswer}`))
+
+        }
 
 
-            //    $('.imgContainer').find('img').attr("src").css({
-            //        transform: 'scale(1.5)',
 
-            //    })
+        myApp.reduceScore();
 
-            myApp.reduceScore();
-
-            // console.log(myApp.startScore)
-
-
-        } 
-
-    });
+    })
 };
 
 console.log($('#timer')[0])
 
-        myApp.reset = () => {
-            $('.question').empty();
-            $('.imgContainer').empty();
-            $('#timer').empty();
+myApp.reset = () => {
+    $('.question').empty();
+    $('.imgContainer').empty();
+    $('#timer').empty();
+    $('answerPopUp').empty();
 
-            $('.imgContainer').css({
-                display: 'inline-flex',
-                transform: 'scale(1)'
-            })
-
-
-        }
-
-        myApp.nextRound = () => {
-            $('.nextRound').on('click', function () {
-                $('.nextRound').attr('disabled', 'disabled');
-                myApp.counter++
-                myApp.reset();
-                myApp.sendQueryData();
-                $('.imgContainer').css({'opacity': 1})
+    $('.imgContainer').css({
+        display: 'inline-flex',
+        transform: 'scale(1)'
+    })
 
 
-            })
-        }
+}
+
+myApp.nextRound = () => {
+    $('.nextRound').on('click', function () {
+        $('.nextRound').attr('disabled', 'disabled');
+        myApp.counter++
+        myApp.reset();
+        myApp.sendQueryData();
+        $('.imgContainer').css({ 'opacity': 1 })
+
+        $('.answerPopUp').css({
+            'opacity': '0'
+        })
+
+
+    })
+}
 
 myApp.init = () => {
 
@@ -299,17 +301,17 @@ myApp.init = () => {
     myApp.nextRound();
 
 }
-    $(function () {
+$(function () {
 
-        // START OF GAME
-        $('.letsPlay').on('click', function () {
-            $('.startGame').animate({
-                height: '0'
-            }, 'slow').empty()
-            
-            $('.nextRound').attr('disabled', 'disabled');
-            
-            myApp.init();
-        })
+    // START OF GAME
+    $('.letsPlay').on('click', function () {
+        $('.startGame').animate({
+            height: '0'
+        }, 'slow').empty()
+
+        $('.nextRound').attr('disabled', 'disabled');
+
+        myApp.init();
     })
+})
 
