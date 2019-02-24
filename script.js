@@ -193,6 +193,23 @@ myApp.info = {
     // ]
 }
 
+myApp.endGame = () => {
+    if (myApp.counter === 4) {
+
+
+        $('.endScreen').animate({
+            width: '100%'
+        })
+
+        $('.endScreen p').animate({
+            opacity: '1',
+        })
+        $('.endScreen h1').animate({
+            opacity: '1'
+        })
+    }
+}
+
 
 // SCORE FUNCTIONALITY
 
@@ -234,6 +251,7 @@ myApp.answerSelect = () => {
             }
 
             myApp.updateScore();
+            myApp.endGame();
             $('.nextRound').removeAttr('disabled')
 
             //  ($(this).find('img').attr('src') !== myApp.info.questions[`quote${[myApp.counter]}`].imgUrl)
@@ -245,7 +263,11 @@ myApp.answerSelect = () => {
             $('.imgContainer').css({
                 'opacity': '0'
             })
+            $('.answerPopUp').css({
+                "z-index": "5"
+            });
             $('.imageAnswers').append(`<div class="answerPopUp"><img src=${myApp.info.questions[`quote${[myApp.counter]}`].imgUrl}></div>`);
+            myApp.endGame();
 
 
 
@@ -287,7 +309,8 @@ myApp.nextRound = () => {
         $('.imgContainer').css({ 'opacity': 1 })
 
         $('.answerPopUp').css({
-            'opacity': '0'
+            'opacity': '0',
+            'z-index': '-1'
         })
 
 
