@@ -41,10 +41,12 @@ myApp.stopTimer = () => {
 myApp.resetTimer = () => {
     $('.nextRound').on('click', function () {
         clearInterval(myApp.ticker())
-       
+
     })
 }
 //END COUNTDOWN TICKER
+
+
 
 
 //RANDOM NUMBER GENERATOR FUNCTION HOPEFULLY USED TO TRY AND GET THE RANDOMIZATION TO WORK - NOT CALLED CURRENTLY WILL ONLY DO THIS
@@ -92,18 +94,8 @@ myApp.returnQueryData = (translateQuery) => {
         myApp.appendAnswers();
         myApp.ticker();
 
-
-
     })
 }
-
-
-
-// function to append dummy images to DOM
-
-//function to append the question to the DOM
-
-//function to update score and trigger next round
 
 
 // APPENDS QUESTION TO SCREEN DYNAMICALLY - PASSED IN TRANSLATED TEXT. CALLED IN THEN FUNCTION OF RETURNQUERYDATA. AKA ONCE WE HAVE THE DATA THROW THE QUESTION UP
@@ -114,19 +106,14 @@ myApp.appendQuestion = (newText) => {
 // APPENDS POSSIBLE ANSWERS TO SCREEN DYNAMICALLY - CALLED IN THEN FUNCTION OF RETURNQUERYDATA. AKA ONCE WE HAVE THE DATA THROW THE QUESTION UP
 myApp.appendAnswers = () => {
     //USE TEMPLATE LITERALS IN ORDER TO GET A RANDOM URL()
-    $('#container1').append(`<div class='answer1' id='answer' tabindex="0" role="button" aria-pressed="false" aria-disabled='true'> <img src="${myApp.info.questions[`quote${[myApp.counter]}`].dummyAnswers[0]}" alt=""></div>`)
+    $('#container1').append(`<div class='answer1' id='answer' tabindex="0" role="button" aria-pressed="false" aria-disabled='true'> <img src="${myApp.info.questions[`quote${[myApp.counter]}`].dummyAnswers[0]}" alt="${myApp.info.questions[`quote${[myApp.counter]}`].altText[0]}"></div>`)
 
-    $('#container2').append(`<div class='answer2' id='answer' tabindex="0" role="button" aria-pressed="false"><img src="${myApp.info.questions[`quote${[myApp.counter]}`].dummyAnswers[1]}" alt=""></div>`)
+    $('#container2').append(`<div class='answer2' id='answer' tabindex="0" role="button" aria-pressed="false"><img src="${myApp.info.questions[`quote${[myApp.counter]}`].dummyAnswers[1]}" alt="${myApp.info.questions[`quote${[myApp.counter]}`].altText[0]}"></div>`)
 
-    $('#container3').append(`<div class='answer3'  id='answer' tabindex="0" role="button" aria-pressed="false"> <img src="${myApp.info.questions[`quote${[myApp.counter]}`].dummyAnswers[2]}" alt=""></div>`)
+    $('#container3').append(`<div class='answer3'  id='answer' tabindex="0" role="button" aria-pressed="false"> <img src="${myApp.info.questions[`quote${[myApp.counter]}`].dummyAnswers[2]}" alt="${myApp.info.questions[`quote${[myApp.counter]}`].altText[0]}"></div>`)
 
-    $('#container4').append(`<div class='answer4'  id='answer' tabindex="0" role="button" aria-pressed="false"><img src="${myApp.info.questions[`quote${[myApp.counter]}`].dummyAnswers[3]}" alt=""></div>`)
+    $('#container4').append(`<div class='answer4'  id='answer' tabindex="0" role="button" aria-pressed="false"><img src="${myApp.info.questions[`quote${[myApp.counter]}`].dummyAnswers[3]}" alt="${myApp.info.questions[`quote${[myApp.counter]}`].altText[0]}"></div>`)
 }
-
-
-
-
-
 
 // APP INFO
 myApp.info = {
@@ -137,13 +124,17 @@ myApp.info = {
             imgUrl: './assets/marshallMcluhan.jpg',
             dummyAnswers: [
                 './assets/celineDion.jpg',
-                './assets/georgeWBush.jpeg',
+                './assets/marshallMcluhan.jpg',
                 './assets/abeLincoln.jpg',
-                './assets/marshallMcluhan.jpg'
+                './assets/georgeWBush.jpeg',
 
             ],
             altText: [
-                
+                'Celine Dion',
+                'Marshall Mcluhan',
+                'Abe Lincoln',
+                'George W Bush',
+
             ]
         },
         quote2: {
@@ -155,6 +146,12 @@ myApp.info = {
                 './assets/davidSuzuki.jpg',
                 './assets/franzKafka.jpg',
                 './assets/martinLutherKingJr.jpg'
+            ],
+            altText: [
+                'Albert Einstein',
+                'David Suzuki',
+                'Franz Kafka',
+                'Martin Luther King, Jr.',
             ]
 
 
@@ -168,7 +165,12 @@ myApp.info = {
                 './assets/anneFrank.jpg',
                 './assets/hunterSThompson.jpg',
                 './assets/rosaParks.jpg'
-
+            ],
+            altText: [
+                'Bruce Lee',
+                'Anne Frank',
+                'Hunter S. Thompson',
+                'Rosa Parks'
             ]
 
         },
@@ -181,6 +183,12 @@ myApp.info = {
                 './assets/steveJobs.png',
                 './assets/ghandi.jpg',
                 './assets/mayaAngelou.jpg'
+            ],
+            altText: [
+                'Salvador Dali',
+                'Steve Job',
+                'Ghandi',
+                'Maya Angelou'
             ]
         }
 
@@ -195,8 +203,6 @@ myApp.info = {
 
 
 // SCORE FUNCTIONALITY
-
-
 myApp.startScore = 0;
 
 // ADD ONE TO SCORE
@@ -223,7 +229,7 @@ myApp.answerSelect = () => {
         // CHECKS IF ANSWER IS CORRECT
         if ($(this).find('img').attr('src') === myApp.info.questions[`quote${[myApp.counter]}`].imgUrl) {
 
-            $('.question').empty().append(`<h2>Correct!</h2>`)
+            $('.question').empty().append(`<h2>Correct!</h2><p class='originalQuote'>${myApp.info.questions[`quote${[myApp.counter]}`].quoteText}</p>`)
 
             $('.imgContainer').not(this).css({
                 display: 'none',
@@ -235,15 +241,18 @@ myApp.answerSelect = () => {
 
             myApp.updateScore();
             $('.nextRound').removeAttr('disabled')
-          
-        //  ($(this).find('img').attr('src') !== myApp.info.questions[`quote${[myApp.counter]}`].imgUrl)
+
+            myApp.endGame();
+
+
+            //  ($(this).find('img').attr('src') !== myApp.info.questions[`quote${[myApp.counter]}`].imgUrl)
         } else {
             $('.nextRound').removeAttr("disabled");
-            $('.question').empty().append(`<h2>Wrong!</h2>`)
-            // $('.imgContainer').animate({
-            //     'opacity': '0'
-            // }, 500);
-           
+            $('.question').empty().append(`<h2>Wrong!</h2><p class='originalQuote'>${myApp.info.questions[`quote${[myApp.counter]}`].quoteText}</p>`)
+            $('.imgContainer').animate({
+                'opacity': '0'
+            }, 500);
+
             // $('.imgContainer').not('img').attr('src', `${myApp.rightAnswer}`).animate({
             //     opacity: '0',
             // })
@@ -257,40 +266,65 @@ myApp.answerSelect = () => {
 
             myApp.reduceScore();
 
-            // console.log(myApp.startScore)
+            myApp.endGame();
 
-
-        } 
-
+        }
     });
 };
 
 console.log($('#timer')[0])
 
-        myApp.reset = () => {
-            $('.question').empty();
-            $('.imgContainer').empty();
-            $('#timer').empty();
-
-            $('.imgContainer').css({
-                display: 'inline-flex',
-                transform: 'scale(1)'
-            })
+myApp.reset = () => {
+    $('.question').empty();
+    $('.imgContainer').empty();
+    $('#timer').empty();
 
 
-        }
 
-        myApp.nextRound = () => {
-            $('.nextRound').on('click', function () {
-                $('.nextRound').attr('disabled', 'disabled');
-                myApp.counter++
-                myApp.reset();
-                myApp.sendQueryData();
-                $('.imgContainer').css({'opacity': 1})
+    $('.imgContainer').css({
+        display: 'inline-flex',
+        transform: 'scale(1)'
+    })
 
 
-            })
-        }
+}
+
+myApp.nextRound = () => {
+    $('.nextRound').on('click', function () {
+        $('.nextRound').attr('disabled', 'disabled');
+
+        myApp.counter++
+
+        console.log(myApp.counter)
+        myApp.reset();
+        myApp.sendQueryData();
+        $('.imgContainer').css({
+            'opacity': '1'
+        });
+
+
+
+
+    })
+}
+
+myApp.endGame = () => {
+    if (myApp.counter === 4) {
+       
+
+        $('.endScreen').animate({
+            width: '100%'
+        })
+
+        $('.endScreen p').animate({
+            opacity: '1',
+        })
+        $('.endScreen h1').animate({
+            opacity: '1'
+        })
+    } 
+    }
+
 
 myApp.init = () => {
 
@@ -298,18 +332,18 @@ myApp.init = () => {
     myApp.answerSelect();
     myApp.nextRound();
 
+
 }
-    $(function () {
+$(function () {
 
-        // START OF GAME
-        $('.letsPlay').on('click', function () {
-            $('.startGame').animate({
-                height: '0'
-            }, 'slow').empty()
-            
-            $('.nextRound').attr('disabled', 'disabled');
-            
-            myApp.init();
-        })
+    // START OF GAME
+    $('.letsPlay').on('click', function () {
+        $('.startGame').animate({
+            height: '0'
+        }, 'slow').empty()
+
+        $('.nextRound').attr('disabled', 'disabled');
+
+        myApp.init();
     })
-
+})

@@ -287,6 +287,38 @@ h4 {
 
 }
 
+.endScreen {
+    width: 0%;
+    position:absolute;
+    top:0;
+    right:0;
+    left:0;
+    bottom: 0;
+    background-color:green;
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    align-items:center;
+    background-color: #01b4ef;
+    background-image: url("data:image/svg+xml,%3Csvg width='40' height='12' viewBox='0 0 40 12' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 6.172L6.172 0h5.656L0 11.828V6.172zm40 5.656L28.172 0h5.656L40 6.172v5.656zM6.172 12l12-12h3.656l12 12h-5.656L20 3.828 11.828 12H6.172zm12 0L20 10.172 21.828 12h-3.656z' fill='%2359ccf2' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E");
+    
+}
+
+.endContainer {
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items:center;
+    position:relative;
+}
+.endScreen p,
+.endScreen h1 {
+    opacity:0;
+    animation: jiggle 1s linear
+}
+
+
+
 @keyframes jiggle {
     0% {
         transform: rotate(10deg);
