@@ -156,9 +156,9 @@ myApp.info = {
             imgUrl: './assets/martinLutherKingJr.jpg',
             dummyAnswers: [
                 './assets/albertEinstein.jpg',
+                './assets/martinLutherKingJr.jpg',
                 './assets/davidSuzuki.jpg',
                 './assets/franzKafka.jpg',
-                './assets/martinLutherKingJr.jpg'
             ]
 
 
@@ -168,11 +168,10 @@ myApp.info = {
             quoteText: 'I have learned over the years that when one\'s mind is made up, this diminishes fear; knowing what must be done does away with fear.',
             imgUrl: './assets/rosaParks.jpg',
             dummyAnswers: [
+                './assets/rosaParks.jpg',
                 './assets/bruceLee.jpg',
                 './assets/anneFrank.jpg',
                 './assets/hunterSThompson.jpg',
-                './assets/rosaParks.jpg'
-
             ]
 
         },
@@ -183,22 +182,27 @@ myApp.info = {
             dummyAnswers: [
                 './assets/salvadorDali.jpg',
                 './assets/steveJobs.png',
+                './assets/mayaAngelou.jpg',
                 './assets/ghandi.jpg',
-                './assets/mayaAngelou.jpg'
+            ]
+        },
+        quote5: {
+            author: "Abraham Lincoln",
+            quoteText: 'Folks are usually about as happy as they make their minds up to be',
+            imgUrl: './assets/abeLincoln.jpg',
+            dummyAnswers: [
+                './assets/johnLennon.jpg',
+                './assets/abeLincoln.jpg',
+                './assets/winstonChurchill.jpg',
+                './assets/peterMansbridge.jpg'
             ]
         }
 
     },
-    // dummyAnswers: [
-
-    //     './assets/johnLennon.jpg',
-    //     './assets/winstonChurchill.jpg',
-    //     './assets/peterMnasbridge.jpg'
-    // ]
 }
 
 myApp.endGame = () => {
-    if (myApp.counter === 4) {
+    if (myApp.counter === 5) {
 
 
         $('.endScreen').animate({
