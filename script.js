@@ -147,6 +147,10 @@ myApp.info = {
 
             ],
             altText: [
+                'Celine Dion',
+                'George W Bush',
+                'Abraham Lincoln',
+                'Marshall Mcluhan',
 
             ]
         },
@@ -159,6 +163,12 @@ myApp.info = {
                 './assets/davidSuzuki.jpg',
                 './assets/franzKafka.jpg',
                 './assets/martinLutherKingJr.jpg'
+            ],
+            altText: [
+                'Albert Einstein',
+                'David Suzuki',
+                'Franz Kafka',
+                'Martin Luther King, Jr.'
             ]
 
 
@@ -172,7 +182,12 @@ myApp.info = {
                 './assets/anneFrank.jpg',
                 './assets/hunterSThompson.jpg',
                 './assets/rosaParks.jpg'
-
+            ],
+            altText: [
+                'Bruce Lee',
+                'Anne Frank',
+                'Hunter S Thompson',
+                'Rosa Parks'
             ]
 
         },
