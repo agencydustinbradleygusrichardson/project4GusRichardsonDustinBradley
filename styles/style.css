@@ -226,20 +226,45 @@ main {
     flex-wrap:wrap;
     margin: 1rem;
     transform: translateY(-20px);
-
-
 }
+
+.imgContainer {
+    width: 50%;
+    height: 300px;
+    display:flex; 
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    /* outline:2px solid orange; */
+    margin: 10px 0;
+}
+
 
 .answer1,
 .answer2,
 .answer3,
 .answer4 {
-    width: 50%;
+    width: 100%;
+    height: 100%;
+    /* height: 290px; */
     text-align:center;
     transition: 0.2s  linear;
     padding: 2px;
-    
+    outline: 2px solid blue;
 }
+
+.answer1 img,
+.answer2 img,
+.answer3 img,
+.answer4 img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+
 
 .answer1:hover,
 .answer2:hover,
@@ -257,7 +282,7 @@ main {
     animation: jiggle .5s linear;    
 }
 
-img{
+/* img{
     display:block;
     width: 100%;
     -webkit-box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, 0.75);
@@ -265,19 +290,7 @@ img{
     box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, 0.75);
     min-height: 10rem;
     object-fit: cover;
-}
-
-.imgContainer {
-    height: 40%;
-    width: 50%;
-    display:flex;
-    flex-direction:column;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-    /* outline:2px solid orange; */
-}
-
+} */
 
 h4 {
     
