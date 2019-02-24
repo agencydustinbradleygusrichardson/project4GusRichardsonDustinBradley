@@ -132,6 +132,7 @@ header div {
 
 main {
     width: 100%;
+    height: auto;
     height: 77vh;
     display:flex;
     flex-direction:row;
@@ -218,7 +219,8 @@ main {
 
 .imageAnswers {
     width: 60%;
-    height: 100%;
+    height: auto;
+    /* height: 100%; */
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -226,18 +228,19 @@ main {
     flex-wrap:wrap;
     margin: 1rem;
     transform: translateY(-20px);
+    border: 2px solid green;
 }
 
 .imgContainer {
-    width: 50%;
-    height: 300px;
+    width: 300px;
+    height: 260px;
     display:flex; 
     flex-direction:column;
     justify-content: center;
     align-items: center;
-    padding: 10px;
+    /* padding: 10px; */
     /* outline:2px solid orange; */
-    margin: 10px 0;
+    margin: 5px 10px;
 }
 
 
@@ -407,7 +410,7 @@ h4 {
 
 
 /* MEDIA QUERIES */
-@media only screen and (max-width:1100px) {
+@media only screen and (max-width:1130px) {
     .question {
         top:3.5rem;
     }
@@ -420,6 +423,12 @@ h4 {
     .arrow {
         left: 0.5rem;
     }
+
+    .imgContainer {
+        width: 250px;
+        height: 250px;
+    }
+
 
 }
 
@@ -434,12 +443,21 @@ h4 {
     header h1 {
         font-size: 4rem;
     }
+    .imgContainer {
+        width: 220px;
+        height: 240px;
+    }
 }
 
 @media only screen and (max-width: 900px) {
     header {
         justify-content:space-between;
 
+    }
+
+    .imgContainer {
+        width: 200px;
+        height: 240px;
     }
 
 
@@ -467,10 +485,21 @@ h4 {
 
 }
 
+@media only screen and (max-width: 800px){
+    .imgContainer {
+        width: 180px;
+        height: 240px;
+    }
+}
+
 @media only screen and (max-width: 750px) {
     main {
         flex-direction:column;
-
+    }
+    .imgContainer {
+        width: calc(50% - 10px);
+        height: 240px;
+        margin: 5px;
     }
 
     .leftMainContainer {
