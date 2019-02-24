@@ -314,11 +314,6 @@ main {
 .answerPopUp  {
     position: absolute;
     z-index: -1;
-<<<<<<< HEAD
-
-=======
-    /* top: -20px; */
->>>>>>> 999572ee176e376d0d2c201b833a5fe2af503032
 }
 
 .answerPopUp img {
