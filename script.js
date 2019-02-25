@@ -270,7 +270,7 @@ app.answerSelect = () => {
             $(".nextRound").removeAttr("disabled");
             $(".question").empty().append(`<h2>Correct!</h2>
             <p>${app.info.questions[`quote${[app.counter]}`].quoteText}</p>
-            <P id = "authorName"> -${ app.info.questions[`quote${[app.counter]}`].author}`)
+            <p id = "authorName"> -${ app.info.questions[`quote${[app.counter]}`].author}</p>`)
 
             $(".imgContainer").not(this).css({
                 display: "none",

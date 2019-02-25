@@ -175,6 +175,7 @@ table {
 body,
 figure {
     margin: 0;
+
 }
 
 legend,
@@ -412,6 +413,10 @@ main {
     text-align: center;
 }
 
+.question h2 {
+    margin: 0;
+}
+
 .question p {
     font-size: 2rem;
     font-family: "ZCOOL QingKe HuangYou",
@@ -419,11 +424,12 @@ main {
     line-height: 2rem;
 }
 
+
 #authorName {
     padding: 0;
     margin: 0;
     position: relative;
-    left: 8rem;
+    left: 3rem;
 }
 
 .imageAnswers {
@@ -543,9 +549,13 @@ a {
 
 
 /* MEDIA QUERIES */
+
+
+
 @media only screen and (max-width:1100px) {
     .question {
         top: 3.5rem;
+        height:65%;
     }
 
     .buttonContainer {
@@ -594,11 +604,12 @@ a {
         margin-left: 2rem;
         left: 0;
         transform: rotate(0);
-        height: 60%;
+        height: 70%;
+  
     }
 
     .buttonContainer {
-        left: 2rem;
+        left: 3.5rem;
         top: 0;
     }
 
@@ -611,20 +622,26 @@ a {
 
     }
 
+    .question {
+        left:1rem;
+    }
+
     .answerPopUp {
-        top: -20px;
+        top: 1rem;
     }
 
     .leftMainContainer {
         width: 80%;
+        justify-content:center;
+
     }
 
     .imageAnswers {
         width: 90%;
     }
 
-    .answerPopUp {
-        top: -20px;
+    .buttonContainer {
+        left:4rem;
     }
 
     .instructions {
@@ -638,6 +655,7 @@ a {
     .titleContainer h1 {
         margin:0;
         padding:0;
+        width: 100%;
     }
 }
 
@@ -651,10 +669,27 @@ a {
         width: 100%;
     }
 
+       .question {
+           left: 0;
+       }
 
 
     .startGame h1 {
         font-size: 3.5rem
+    }
+    .leftMainContainer {
+        width:100%;
+
+    }
+
+    .question {
+        width:100%;
+        margin: 0;
+        position:0;
+    }
+
+    .buttonContainer {
+        left:0;
     }
 }
 
