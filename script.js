@@ -105,7 +105,7 @@ app.appendQuestion = (newText) => {
 // APPENDS POSSIBLE ANSWERS TO SCREEN DYNAMICALLY - CALLED IN THEN FUNCTION OF RETURNQUERYDATA. AKA ONCE WE HAVE THE DATA THROW THE QUESTION UP
 app.appendAnswers = () => {
 
-    $("#container1").append(`<a href='#'><div class="answer1" id="answer" tabindex="0" role="button" aria-pressed="false"> <img src="${app.info.questions[`quote${[app.counter]}`].dummyAnswers[0]}" alt=""></div></a>`)
+    $("#container1").append(`<a href="#"><div class="answer1" id="answer" tabindex="0" role="button" aria-pressed="false"> <img src="${app.info.questions[`quote${[app.counter]}`].dummyAnswers[0]}" alt=""></div></a>`)
 
     $("#container2").append(`<a href="#"><div class="answer2" id="answer" tabindex="0" role="button" aria-pressed="false"><img src="${app.info.questions[`quote${[app.counter]}`].dummyAnswers[1]}" alt=""></div></a>`)
 
@@ -270,7 +270,7 @@ app.answerSelect = () => {
             $(".nextRound").removeAttr("disabled");
             $(".question").empty().append(`<h2>Correct!</h2>
             <p>${app.info.questions[`quote${[app.counter]}`].quoteText}</p>
-            <P id = 'authorName'> -${ app.info.questions[`quote${[app.counter]}`].author}`)
+            <P id = "authorName"> -${ app.info.questions[`quote${[app.counter]}`].author}`)
 
             $(".imgContainer").not(this).css({
                 display: "none",
@@ -292,7 +292,7 @@ app.answerSelect = () => {
             $(".question").empty().append(`
             <h2>Wrong!</h2>
             <p>${app.info.questions[`quote${[app.counter]}`].quoteText}</p>
-            <P id = 'authorName'> -${ app.info.questions[`quote${[app.counter]}`].author} `);
+            <P id = "authorName"> -${ app.info.questions[`quote${[app.counter]}`].author} `);
 
             $(".imgContainer").css({
                 "opacity": "0"

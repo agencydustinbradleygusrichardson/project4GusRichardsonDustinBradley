@@ -224,7 +224,7 @@ body {
     overflow: hidden;
     font-size: 125%;
     background: rgb(89, 204, 242);
-    font-family: 'ZCOOL QingKe HuangYou',
+    font-family: "ZCOOL QingKe HuangYou",
         cursive;
 
 }
@@ -288,7 +288,7 @@ label {
     width: 50%;
     text-align: center;
     margin: 0 auto;
-    font-family: 'ZCOOL QingKe HuangYou',
+    font-family: "ZCOOL QingKe HuangYou",
         cursive;
     font-size: 1.5rem;
     line-height: 2rem;
@@ -297,7 +297,7 @@ label {
 
 h1 {
     margin: 0;
-    font-family: 'ZCOOL QingKe HuangYou', cursive;
+    font-family: "ZCOOL QingKe HuangYou", cursive;
     font-size: 80px;
     color: rgb(255, 217, 0);
     text-shadow: 3px 3px rgb(250, 86, 149);
@@ -415,7 +415,7 @@ main {
 
 .question p {
     font-size: 2rem;
-    font-family: 'ZCOOL QingKe HuangYou',
+    font-family: "ZCOOL QingKe HuangYou",
         cursive;
     line-height: 2rem;
 }
