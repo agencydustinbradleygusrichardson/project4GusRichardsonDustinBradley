@@ -660,23 +660,6 @@ a {
 
 }
 
-@media only screen and (max-height: 750px) {
-    header {
-        height: 27vh;
-    }
-
-    .question {
-        padding: 6rem;
-        margin-bottom: 4rem;
-    }
-
-    .nextRound {
-        padding-bottom: 2.5rem;
-    }
-
-
-}
-
 @media only screen and (max-width: 400px) {
     header {
         flex-direction: column;
